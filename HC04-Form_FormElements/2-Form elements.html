@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Elements</title>
+    <style>
+        table{
+            background-color: lightgray;
+        }
+        .formheader{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr class="formheader">
+            <td>
+                <img src="./images/avatar-men.png" alt="" width="100">
+            </td>
+            <td>
+                Personel Tanıma Formu
+            </td>
+            <tr>
+                <td colspan="2">
+                    <form action="result.html">
+                        <div>
+                            <label for="ad">Adınız:</label>
+                            <br>
+                            <input type="text" name="Ad" id="ad">
+                        </div>
+                        <div>
+                            <label for="soyad">Soydınız:</label>
+                            <br>
+                            <input type="text" name="Soyad" id="soyad">
+                        </div>
+                        <div>
+                            <label for="yaş">Yaş:</label>
+                            <br>
+                            <input type="number" name="Yaş" id="yaş">
+                        </div>
+                        <div>
+                            <label for="email">E-mail:</label>
+                            <br>
+                            <input type="email" name="Email" id="email">
+                        </div>
+                        <div>
+                            <label for=""></label>
+                        </div>
+                        <div>
+                            <label for="cinsiyet">Cinsiyet:</label>
+                            <br>
+                            <input type="radio" id="kadın" name="Cinsiyet" value="Kadın">
+                            <label for="kadın">Kadın</label>
+                            <input type="radio" name="Cinsiyet" id="erkek" value="Erkek">
+                            <label for="erkek">Erkek</label>
+                        </div>
+                        <div>
+                            <label for="tel">Telefon:</label> 
+                            <br>
+                            <input type="tel" name="Telefon" id="tel" placeholder="xxx-xxx-xx-xx">
+                        </div>
+                        <br>
+                        <div>
+                            <label for="Günler">Müsait Olduğunuz Günler:</label>
+                            <br>
+                            <input type="checkbox" name="Günler" id="cumartesi" value="Cumartesi">
+                            <label for="cumaresi">Cumartesi</label>  
+                            <input type="checkbox" name="Günler" id="pazar" value="Pazar">
+                            <label for="pazar">Pazar</label>    
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit" value="Kaydet">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -11,6 +11,9 @@
         .formheader{
             background-color: orange;
         }
+        textarea{
+            resize: none;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +73,59 @@
                             <input type="checkbox" name="Günler" id="pazar" value="Pazar">
                             <label for="pazar">Pazar</label>    
                         </div>
+                        <br>
+                        <div>
+                            <label for="hobi">Hobileriniz:</label>
+                            <select name="Hobi" id="hobi">
+                                <option value="">--------</option>
+                                <option value="Müzik">Müzik</option>
+                                <option value="Spor">Spor</option>
+                                <option value="Resim">Resim</option>
+                                <option value="Sinema">Sinema</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <label for="spor">Sevdiğiniz Spor Dalı:</label>
+                            <select name="Spor" id="spor">
+                                <option value="">-------</option>
+                                <optgroup label="Su Sporları"><option value="Su Kayağı">Su Kayağı</option>
+                                <option value="Sörf">Sörf</option></optgroup>
+                                
+                                <optgroup label="Savunma Sporları"> <option value="Judo">Judo</option>
+                                <option value="Karete">Karete</option></optgroup>
+                               
+                            </select>
+
+                        </div>
+                        <br>
+                        <div>
+                            <label for="yorum">Yorum:</label> <br>
+                            <textarea name="Yorum" id="yorum" cols="30" rows="10"></textarea>
+
+                        </div>
+                        <br>
+                        <div>
+                            <label for="ülke">Görmek İstediğiniz Ülkeler:</label>
+                            <br>
+                            <input type="text" name="" id="" list="ülke">
+                            <datalist id="ülke">
+                                <option value="Almanya">
+                                <option value="Amerika">
+                                <option value="Fransa">
+                                
+                            </datalist>
+                                
+
+                        </div>
+                        <br>
+                        <div>
+                            <fieldset>
+                                <legend>Kişisel Bilgiler</legend>
+                                
+                            </fieldset>
+                        </div>
+
                         <br>
                         <div>
                             <input type="submit" value="Kaydet">

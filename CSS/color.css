@@ -1,0 +1,19 @@
+.box1{
+    background-color: darkturquoise ;
+
+}
+.box2{
+    background-color: rgb(255,100,100,0.5);
+}
+.box3{
+    background-color: #aaaaaa;
+}
+.box4{
+    background-color: #abcdef;
+}
+.box5{
+    background-color: #fedcba;
+}
+.box6{
+    background-color: hsl(240,100%,75%);
+}

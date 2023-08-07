@@ -2,8 +2,29 @@ li{
     background-color: cadetblue;
     margin-top: 2px;
     list-style-type: none;
+    display: inline-block;
+    padding: 10px;
+}
+li:hover{
+    opacity: 0.5;
+    cursor: pointer;
+    font-size: larger;
+    
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 .About{
     color: red;
     background-color: antiquewhite;
 }
+img{
+    width: 50%;
+    margin: 10px;
+    border: 5px solid red;
+    padding: 20px;
+}
+
+

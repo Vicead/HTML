@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+}
+h1{
+    background-color: chocolate;
+    margin: 20px 0 5px;
+}
+.par1{
+    background-color: cornflowerblue;
+    margin:10px 20px;
+}
+.par2{
+    background-color: crimson;
+    width: 40%;
+    margin: auto;
+}
+.par3{
+    background-color: darkgreen;
+}
+.imgcontainer{
+    width: 800px;
+    margin: auto;
+    display: flex;
+}
+img{
+   width: 400px;
+}

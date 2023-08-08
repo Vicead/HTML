@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: 800px;
+    height: 600px;
+    background-color: bisque;
+}
+.box1{
+    width: 150px;
+    height: 150px;
+    background-color: crimson;
+    padding: 20px;
+    border: 5px solid black;
+}
+.box2{
+    width: 150px;
+    height: 150px;
+    background-color: gold;
+    padding: 20px;
+    border: 5px solid black;
+}
+.box3{
+    width: 150px;
+    height: 150px;
+    background-color: aqua;
+    padding: 20px;
+}
+p{
+    padding: 40px;
+    border: 5px solid red;
+}

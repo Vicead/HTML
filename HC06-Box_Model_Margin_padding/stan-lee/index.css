@@ -1,0 +1,41 @@
+body{
+    background-color: black;
+    color: white;
+}
+.container{
+    width: 80%;
+    background-color: #272626;
+    border-radius: 20px;
+    margin: auto;
+}
+.heading{
+    font-family: 'Lobster', cursive;
+    
+}
+.title{
+    text-align: center;
+    font-size: 60px;
+}
+span{
+    color: red;
+}
+
+.imgcontainer{
+    width: 400px;
+    margin: auto;
+}
+img{
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 200px red;
+}
+.date{
+    text-align: center;
+}
+.info{
+    width: 80%;
+    text-align: justify;
+    margin: auto;
+    font-size: 20px;
+    
+}

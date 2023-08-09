@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@300&display=swap');
+
+.apple{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(56, 230, 210);
+    font-size: 2rem;
+    font-weight: bold;
+}
+.banana{
+    font-family: 'Borel', cursive;
+    font-size: 2rem;
+    background-color: rgb(230, 56, 108);
+}
+.carrot{
+    font-family: 'Handjet', cursive;
+    font-size: 2rem;
+    background-color: rgb(132, 225, 92);
+    font-variant: small-caps;
+}
+.parent{
+    font-size: 50px;
+}
+.child{
+    font-size: 1.5rem;
+}
+.vw{
+    font-size: 5vw;
+}

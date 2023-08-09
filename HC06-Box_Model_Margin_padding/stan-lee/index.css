@@ -37,5 +37,35 @@ img{
     text-align: justify;
     margin: auto;
     font-size: 20px;
-    
 }
+.marvel{
+    color: red;
+    margin-left: 10%;
+}
+ul{ 
+    width: 80%;
+    margin: auto;
+    font-size: 20px;
+}
+li{
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+footer{
+    text-align: center;
+    font-size: 24px;
+    padding: 32px;
+}
+.link{
+    background-color: black;
+    color: white;
+    padding: 16px;
+    border: 1px solid darkorange;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.link:hover{
+    color: red;
+    background-color: #272626;
+}
+

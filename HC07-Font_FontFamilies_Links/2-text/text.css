@@ -1,0 +1,45 @@
+.tcolor{
+    color: rgb(234, 78, 56);
+    background-color: rgb(234, 225, 225);
+}
+.align{
+    width: 300px;
+    background-color: burlywood;
+}
+.alignment{
+    text-align: justify;
+}
+.decoration{
+    text-decoration: underline overline wavy rgb(60, 225, 225);
+    line-height: 25px;
+}
+a{
+    text-decoration: none;
+}
+.trans{
+    text-transform: capitalize;
+}
+.indent{
+    text-indent: 20px;
+}
+.letter{
+    letter-spacing: 5px;
+}
+.word{
+    word-spacing: 5px;
+}
+.direct{
+    direction: rtl;
+}
+.line{
+    line-height: 1.5;
+}
+.shadow{
+    line-height: 2;
+    text-shadow: 5px -5px 5px rgb(12, 120, 120);
+}
+.box{
+    box-shadow: -5px -5px 30px 5px red;
+    border-radius: 5px;
+}
+

@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RELATIVE-ABSOLUTE</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+           
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+        }
+        .container{
+            background-color: gray;
+            position: relative;
+            width: 300px;
+            top: 100px;
+            left: 100px;
+        }
+        .box1{
+            background-color: cadetblue;
+            border: 1px solid black;
+            position: relative;
+            top: 70px;
+            left: 70px;
+        }
+        .box2{
+            background-color: rgb(154, 95, 160);
+            border: 1px solid black;
+            position: relative;
+            top: 10px;
+            left: 70px;
+        }
+        
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="box box1">box1</div>
+        <div class="box box2">box2</div>
+    </div>
 </body>
 </html>

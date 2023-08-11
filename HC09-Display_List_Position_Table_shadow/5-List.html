@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST</title>
+    <style>
+        li{
+            list-style-position: inside;
+            list-style: none;
+            margin-top: 5px;
+            
+        }
+        ul li::before{
+            content: "👻";
+            border: 1px solid red;
+            padding: 2px;
+            border-radius: 50%;
+            margin: 2px;
+            background-color: black;
+            margin-right: 5px;
+            box-shadow: 2px 2px 2px 2px grey;
+
+        }
+        ol li{
+            border-bottom: 1px solid red;
+            width: 50%;
+            border-radius: 30px;
+            padding: 5px;
+        }
+        ol li:hover{
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <li>item6</li>
+    </ul>
+    <ol>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+    </ol>
+</body>
+</html>

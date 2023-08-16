@@ -1,7 +1,7 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   
   body {
@@ -19,9 +19,9 @@
   
   header .sign-in {
     float: right;
-    color: #920101;
     padding-top: 1.7rem;
     padding-right: 0.5rem;
+    color: #920101;
   }
   
   header .sign-in a {
@@ -34,8 +34,6 @@
     border-bottom: 2px solid #920101;
   }
   
-  /*! NAV STICKY  */
-  /*!-----------------------------------*/
   nav.sticky {
     position: sticky;
     top: 0rem;

@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+}
+.abs{
+    background-color: coral;
+    width: 5cm;
+}
+.div2{
+    background-color: blueviolet;
+    width: 50%;
+    height: 40vh;
+}
+.div3{
+    background-color: orange;
+    width: 50%;
+    height: 50%;
+}
+.div4{
+    background-color: magenta;
+    width: 50vw;
+
+}
+.div5{
+    font-size: 25px;
+}
+.div6{
+    font-size: 2em;
+}
+.div7{
+    font-size: 2em;
+}
+.div8{
+    font-size: 25px;
+}
+.div9{
+    font-size: 5rem;
+}
+.div10{
+    font-size: 5rem;
+}

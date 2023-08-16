@@ -1,0 +1,58 @@
+/* group selectors */
+div p{
+    /* color: red; */
+}
+.container div p{
+    /* color: red; */
+}
+.container p{
+    /* background-color: olive; */
+}
+.box p{
+    /* background-color: bisque; */
+}
+div+p{
+    /* background-color: darkorange; */
+}
+p+div{
+    /* background-color: crimson; */
+}
+div>p{
+    /* background-color: coral; */
+}
+
+/* attribute selectors */
+h2[title="baslik1"]{
+    background-color: olive;
+}
+p[title="paragraf1"]{
+    background-color: crimson;
+}
+a[target="_blank"]{
+    font-size: 2rem;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* psudo selectors */
+#paragraf2::first-line{
+    text-decoration: underline;
+}
+#paragraf2::first-letter{
+    font-size: 3rem;
+    color: red;
+}
+ul li{
+    background-color: olive;
+    width: 20rem;
+    margin: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+ul li::before{
+    content: '❤️';
+}
+ul li::after{
+    content: '🐇';
+    font-size: 2rem;
+}
+

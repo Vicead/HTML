@@ -7,11 +7,12 @@
     background-color: darkorange;
     width: 50%;
     height: 50%;
-    animation-name: travel;
+    /* animation-name: travel;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-delay: 1s;
-    animation-direction: alternate;
+    animation-direction: alternate; */
+    animation: travel 2s ease-in-out infinite alternate;
 }
 @keyframes travel{
     0%{
@@ -19,9 +20,12 @@
     }
     25%{
         transform: translateY(100%);
+        border-radius: 50%;
+        background-color: yellow;
     }
     50%{
         transform: translate(100%, 100%);
+        background-color: magenta;
     }
     100%{
         transform: translateX(100%);

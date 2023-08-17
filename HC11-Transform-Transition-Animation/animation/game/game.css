@@ -33,6 +33,13 @@ body{
     bottom: 52px;
     left: 33%;
     animation: hop-up .5s linear alternate infinite;
+    animation: far .1s linear infinite alternate;
+}
+.car2{
+    position: absolute;
+    bottom: 52px;
+    left: 33%;
+    animation: hop-up .5s linear alternate infinite;
 }
 @keyframes left-move {
     100%{
@@ -48,5 +55,13 @@ body{
     }
     100%{
         transform: translateY(2px);
+}
+}
+@keyframes far{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }

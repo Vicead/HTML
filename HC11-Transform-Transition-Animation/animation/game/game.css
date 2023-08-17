@@ -32,14 +32,17 @@ body{
     position: absolute;
     bottom: 52px;
     left: 33%;
-    animation: hop-up .5s linear alternate infinite;
+    /* animation: hop-up .5s linear alternate infinite; */
     animation: far .1s linear infinite alternate;
+}
+.car2 img{
+    width: 174px;
 }
 .car2{
     position: absolute;
     bottom: 52px;
     left: 33%;
-    animation: hop-up .5s linear alternate infinite;
+        /* animation: hop-up .5s linear alternate infinite; */
 }
 @keyframes left-move {
     100%{

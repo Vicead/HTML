@@ -285,4 +285,50 @@ header{
     color: inherit;
     border-bottom: 1px solid;
   }
-  
+  @media only screen and (max-width:600px){
+    .essentials{
+    background-color: #d5dee5;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    }
+  .essential-text{
+    padding: 10px;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: .3px;
+    }
+    .search-input{
+        width: 250px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .search-input input{
+        font-size: .8rem;
+    }
+    .search-input img{
+        margin: 0rem;
+    }
+    .contact{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: #aea08d;
+        padding: 2rem;
+        flex-direction: column;
+    }
+    .formSection {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    .expert {
+        width: 100%;
+        padding: 2rem;
+        font-family: "Bellota", cursive;
+    }
+    
+  }

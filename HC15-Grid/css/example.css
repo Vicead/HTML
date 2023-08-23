@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+}
+.container{
+    margin: 10px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    gap: 10px;
+}
+.content{
+    background-color: cadetblue;
+    border: 1px solid black;
+    box-shadow: 2px 2px 10px black;
+    background-size: cover;
+}
+.content1{
+    background-image: url("https://picsum.photos/id/684/600/400");
+}
+.content2{
+    background-image: url("https://picsum.photos/id/125/600/400");
+    grid-area: 2/2/2/4;
+}
+.content3{
+    grid-area: 1/2/2/5;
+    background-image: url("https://picsum.photos/id/25/600/400");
+}

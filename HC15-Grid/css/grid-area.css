@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+}
+.container{
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    height: 100vh;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-areas: 
+    "nav nav nav"
+    "sidebar main main"
+    "footer footer footer";
+}
+.box{
+    background-color: cadetblue;
+    border: 1px solid black;
+}
+.box1{
+    grid-area: nav;
+}
+.box2{
+    grid-area: sidebar;
+}
+.box3{
+    grid-area: main;
+}
+.box4{
+    grid-area: footer;
+}

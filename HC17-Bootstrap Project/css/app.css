@@ -1,0 +1,109 @@
+:root{
+    --red:#dc3545;
+}
+/*! -------------- 1- NAVBAR -------------- */
+.navbar-nav{
+    font-size:1.3rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.navbar .nav-link:hover{
+    color:var(--red);
+}
+
+/*! -------------- 2- CAROUSEL -------------- */
+.carousel-item{
+    max-height: calc(100vh - 95px);
+}
+.carousel-caption .btn{
+    width: 7rem;
+}
+.carousel-caption h5{
+    color: var(--red);
+    font-size: 2.3rem;
+    text-shadow: 3px 3px 3px black;
+}
+.carousel-caption p{
+    text-shadow: 3px 3px 3px black;
+    font-weight: 600;
+}
+.carousel-caption{
+    /* margin-bottom: 5rem; */
+    bottom: 5rem;
+}
+.carousel-indicators{
+    gap: .7rem;
+}
+.carousel-indicators button{
+    background-color: var(--red) !important;
+    padding: .1rem !important;
+    width: 3rem !important;
+}
+
+/*! -------------- 3- ABOUT SECTION -------------- */
+
+/*! -------------- 4- INSTRUCTORS -------------- */
+section#instructors .card{
+    transition: transform 1s;
+}
+section#instructors .card:hover{
+    transform: scale(1.03);
+}
+section#instructors i{
+    transition: opacity .6s;
+}
+section#instructors i:hover{
+    opacity: .5;
+}
+
+/*! -------------- 4- STUDENTS SECTION -------------- */
+
+/*! -------------- 5- COURSES SECTION -------------- */
+section#courses .nav-link.active{
+    background-color: var(--red);
+}
+section#courses .nav-link{
+    color: white;
+}
+
+/*! -------------- 6- CONTACT SECTION -------------- */
+
+/*! -------------- 7- FOOTER -------------- */
+footer i{
+    color: white;
+    font-size: 2rem;
+    margin-right: .8rem;
+    transition: color 1s;
+}
+footer i:hover{
+    color: var(--red);
+}
+
+/*! -------------- 8- BUTTON -------------- */
+
+#topBtn {
+    display: none; /* Hidden by default */
+    width: 50px;
+    height: 50px;
+    position: fixed; /* Stay in place */
+    bottom: 20px; /* Position from bottom */
+    right: 30px; /* Position from right */
+    z-index: 99; /* Add a z-index if needed */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 50%; /* Rounded corners */
+  }
+  
+  #topBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+  }
+  
+
+
+
+
+  

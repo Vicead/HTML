@@ -1,0 +1,92 @@
+:root {
+    --orange: rgb(229, 157, 89);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.price {
+    /* border: 1px solid black; */
+    background-color: rgb(238, 238, 238);
+
+}
+
+.btn {
+    background-color: var(--orange);
+    border: none;
+}
+
+.btn:hover {
+    background-color: rgb(238, 238, 238);
+    color: var(--orange);
+}
+
+.new{
+    color: var(--orange);
+}
+
+.ex{
+    text-decoration: line-through;
+    font-size: 80%;
+}
+
+.priceRowFirst{
+    /* margin-top: 3rem !important; */
+    /* margin-bottom: -0.4rem; */
+    /* line-height: 0.7rem; */
+
+}
+
+.priceBorder{
+    border-top: 1px solid gray;
+    line-height: 0.7rem;
+    padding-top: 0.2rem;
+}
+
+.artiBirEksi{
+    /* margin-top: 2.2rem ;
+    padding: 2px;
+    width: 100px; */
+
+    width: 100px;
+
+}
+
+.priceTittle{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+span{
+    font-size: 85%;
+}
+
+select{
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+
+    width: 80%;
+    text-align: center;
+    color: gray;
+}
+
+input{
+    outline: none;
+    width: 85%;
+}
+
+input::placeholder{
+    font-size: .9rem;
+}
+
+button:active {
+    background-color:var(--orange) !important;
+
+}

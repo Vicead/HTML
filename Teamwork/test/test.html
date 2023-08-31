@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="test.css">
+
+</head>
+
+<body>
+
+    <h2 class="text-center mb-5 mt-3">Checkout</h2>
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-6">
+
+            <div class="container">
+
+                <div class="row ms-2">
+                    <div class="col-12">
+                        <h3>Contact Information</h3>
+                    </div>
+
+                    <div class="col-12 ">
+                        <div class="mb-3 ">
+                            <label for="exampleInputEmail1" class="form-label text-secondary">Email</label>
+                            <div class="border border-1 border-black rounded lh-lg searchInput py-1">
+                                <i class="fa-solid fa-envelope ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your email...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-secondary">Phone</label>
+                            <div class="border border-1 border-black rounded lh-lg searchInput">
+                                <i class="fa-solid fa-phone ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your phone...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <h3>Shipping Address</h3>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-secondary">Full Name</label>
+                            <div class="border border-1 border-black rounded lh-lg searchInput">
+                                <i class="fa-solid fa-user ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your Full name...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-secondary">Address</label>
+                            <div class="border border-1 border-black rounded lh-lg searchInput">
+                                <i class="fa-solid fa-house-chimney ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your address...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-secondary">City</label>
+                            <div class="border border-1 border-black rounded lh-lg searchInput">
+                                <i class="fa-solid fa-city ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your city...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-5 ">
+                        <div class="">
+                            <label for="exampleFormControlInput1" class="form-label text-secondary ">Country</label>
+                            <div class="border border-1 border-black rounded lh-lg d-flex align-items-center py-1">
+                                <i class="fa-solid fa-earth-europe ms-2" style="color: #b3b3b3;"></i>
+                                <select class="lh-lg w-75 py-1 " aria-label="Default select example">
+                                    <option selected>Turkey</option>
+                                    <option value="1">Turkey</option>
+                                    <option value="2">Germany</option>
+                                    <option value="3">U.S.A</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 post-code-div ">
+                        <div class="post-code">
+                            <label for="exampleFormControlInput1" class="form-label text-secondary ">Post
+                                Code</label>
+                            <div class="searchInput border border-1 border-black rounded lh-lg">
+                                <i class="fa-solid fa-envelopes-bulk ms-2" style="color: #b3b3b3;"></i>
+                                <input class="border-0" type="text" placeholder="  Enter your postal code...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input border-black rounded-0" type="checkbox" value=""
+                                id="defaultCheck1">
+                            <label class="form-check-label text-secondary" for="defaultCheck1">
+                                See this information next time
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12 col-md-6">
+
+            <div class="container price rounded text-secondary w-75">
+
+                <div class="row">
+                    <div class="col-5 p-2">
+                        <img src="./Asests/photo1.png" class="rounded w-100 h-100" alt="">
+                    </div>
+                    <div class="col-7 priceTittle">
+                        <p class="p1 mt-2">
+                            Vintage Backbag<br><span class="new">$54.99 </span>
+                            <span class="ex">$94.99</span>
+                        </p>
+                        <div
+                            class="d-flex justify-content-between align-items-center border border-1 border-secondary-subtle p-2 rounded  artiBirEksi">
+
+                            <button class="fa-solid fa-minus rounded border-0 p-1    bg-secondary-subtle"></button>
+
+                            <span>1</span>
+
+                            <button class="fa-solid fa-plus rounded border-0 p-1    bg-secondary-subtle"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 p-2">
+                        <img src="./Asests/photo2.png" class="rounded w-100 h-100" alt="">
+                    </div>
+                    <div class="col-7 priceTittle">
+                        <p class="p1 mt-2">
+                            Vintage Backbag<br><span class="new">$54.99 </span>
+                            <span class="ex">$94.99</span>
+                        </p>
+                        <div
+                            class="d-flex justify-content-between align-items-center border border-1 border-secondary-subtle p-2 rounded  artiBirEksi">
+
+                            <button class="fa-solid fa-minus rounded border-0 p-1    bg-secondary-subtle"></button>
+
+                            <span>1</span>
+
+                            <button class="fa-solid fa-plus rounded border-0 p-1    bg-secondary-subtle"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5 priceRowFirst ">
+                    <div>
+                        <div class="d-flex justify-content-between me-4 priceBorder">
+                            <div class="d-flex flex-row mb-3">Shipping</div>
+                            <div class="d-flex flex-row-reverse">$19</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row priceRowSecond ">
+                    <div class="priceRowSecond ">
+                        <div class="priceRowSecond d-flex justify-content-between priceBorder me-4">
+                            <div class="d-flex flex-row mb-3">Total</div>
+                            <div class="d-flex flex-row-reverse">$148.98</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-11">
+            <div class="container text-center p-3">
+                <label class="btn btn-primary" for="btn-check">Continue</label>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

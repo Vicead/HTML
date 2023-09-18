@@ -154,3 +154,36 @@ const dere=(der)=>{
 }
 
 console.log(dere(28));
+
+ //! 13- Write a function to calculate compound interest based on the principle amount
+  // Function `compoundInt()` returns a final amount based on the compound interest formula provided principal amount, rate of interest per year, time on a yearly basis, and n as the number of times that interest is compounded per unit time.
+  
+  function compoundInt(principle, rate, time, n) {
+    var interest = principle * Math.pow(1 + rate / n, n * time);
+    return principle + interest;
+  }
+  
+  console.log(compoundInt(20000, 5, 2, 2)); //3021250
+  console.log(compoundInt(150000, 25, 1, 2)); //27487500
+  
+  //! 14- Write a function named calculateSupply that:
+  // takes 2 arguments: age, amount per day.
+  // calculates the amount consumed for rest of the life (based on a constant max age).
+  // outputs the result to the screen like so: "You will need NN to last you until the ripe old age of X"
+  // Call that function three times, passing in different values each time.
+  // Bonus: Accept floating point values for amount per day, and round the result to a round number.
+  function calculateSupply(age, numPerDay) {
+    var maxAge = 100;
+    var totalNeeded = numPerDay * 365 * (maxAge - age);
+    var message =
+      "You will need " +
+      totalNeeded +
+      " cups of tea to last you until the ripe old age of " +
+      maxAge;
+    console.log(message);
+  }
+  
+  calculateSupply(28, 36);
+  calculateSupply(28, 2.5);
+  calculateSupply(28, 400);
+  

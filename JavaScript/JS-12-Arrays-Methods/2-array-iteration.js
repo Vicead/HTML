@@ -184,3 +184,33 @@ console.log(salaries.reduce((toplam,eleman)=> toplam+eleman,0))
 
 console.log(salaries.reduce((x,y)=>x*y,1))
 
+/* -------------------------------------------------------------------- */
+
+const fiyatlar1=[100,250,50,89];
+
+fiyatlar1.map((a) => Math.round(a * 1.1)).forEach((a) => console.log(a))
+
+
+/* -------------------------------------------------------------------- */
+
+fiyatlar1.filter((a)=>a>90).forEach((a)=>console.log(a))
+
+/* -------------------------------------------------------------------- */
+
+fiyatlar1.filter((a)=>a<110).forEach((a)=>console.log(Math.trunc(a*1.1)))
+
+/* -------------------------------------------------------------------- */
+
+const maaslar=[3000,5000,4000,6000,6500];
+
+maaslar.filter((a)=>a<4000).forEach((a)=>console.log(Math.trunc(a*1.5)))
+
+
+maaslar.filter((a)=>a>4000).forEach((a)=>console.log(Math.trunc(a*1.25)))
+
+
+console.log(maaslar.filter((a)=>a<4000).map((a)=>a*1.5))
+
+console.log(maaslar.filter((a)=>a>4000).map((a)=>a*1.25))
+
+/* -------------------------------------------------------------------- */

@@ -214,3 +214,49 @@ const findNum=(arr)=>{
     return total-arrTotal
 }
 console.log(findNum(sal));
+
+//! 12- let string="altı,bir,iki,dört,beş,üç,yedi,sekiz,dokuz"
+//! 612453789   bu hale dönüştüren program
+
+let string = "altı,bir,iki,dört,beş,üç,yedi,sekiz,dokuz";
+let stringNumber = [];
+const splitToNumber = (string) => {
+  let newString = string.split(",");
+  console.log(newString);
+  for (let i = 0; i <= newString.length - 1; i++) {
+    if (newString[i] === "bir") stringNumber.push(1);
+    else if (newString[i] === "iki") stringNumber.push(2);
+    else if (newString[i] === "üç") stringNumber.push(3);
+    else if (newString[i] === "dört") stringNumber.push(4);
+    else if (newString[i] === "beş") stringNumber.push(5);
+    else if (newString[i] === "altı") stringNumber.push(6);
+    else if (newString[i] === "yedi") stringNumber.push(7);
+    else if (newString[i] === "sekiz") stringNumber.push(8);
+    else stringNumber[i] = 9;
+  }
+
+  return stringNumber.join("");
+};
+console.log(splitToNumber(string));
+
+//! 13- Size bir dizi kelime verildi. "Nemo" kelimesini bulmanız ve şuna benzer bir dize döndürmeniz gerekir: 
+
+//? "[Nemo'yu bulduğunuz kelimenin sırası] 'nda Nemo'yu buldum!"
+
+//? Nemo'yu bulamıyorsanız, "I can't find Nemo :(" yazın.
+
+//? findNemo("I am finding Nemo !") ➞ "I found Nemo at 4!"
+
+//? findNemo("Nemo is me") ➞ "I found Nemo at 1!"
+
+//? findNemo("I Nemo am") ➞ "I found Nemo at 2!"
+
+
+
+//! 14- Bir öğe dizisini alan, tüm yinelenen öğeleri kaldıran ve eski diziyle aynı sırada yeni bir dizi döndüren bir fonksiyon oluşturan program 
+
+// removeDups([1, 0, 1, 0]) ➞ [1, 0]
+
+// removeDups(["The", "big", "cat"]) ➞ ["The", "big", "cat"]
+
+// removeDups(["John", "Taylor", "John"]) ➞ ["John", "Taylor"]

@@ -366,8 +366,30 @@ console.log(yeniListe);
 // {name: 'CHELSEY DIETRICH', phone: '(254)954-1289'}
 // {name: 'CLEMENTINA DUBUQUE', phone: '024-648-3804'}
 
+const ara = ({name, phone}) => {
+  let day;
 
+  if (name[0].toLowerCase() === 'e') {
+      day = "Pazartesi";
+  }
+  else if (name[0].toLowerCase() === 'c') {
+      day = "Çarşamba";
+  }
 
+  return day ? {
+      dayToCall: day,
+      name: name.toUpperCase(),
+      phone: phone
+  } : null;
+}
+
+const memnunMusteri = customerList.map(ara).filter(Boolean); 
+
+let pazartesiAranacaklar = memnunMusteri.filter(c => c.dayToCall === 'Pazartesi');
+let carsambaAranacaklar = memnunMusteri.filter(c => c.dayToCall === 'Çarşamba');
+
+console.log("Pazartesi Aranacaklar", pazartesiAranacaklar);
+console.log("Çarşamba Aranacaklar", carsambaAranacaklar);
 
 
 
@@ -379,3 +401,21 @@ console.log(yeniListe);
 // Beklenen Sonuc
 // {name: 'Leanne Graham', phone: 'Sincere@april.biz', mesaj: 'Yeni çıkan XXX elektronik cihazımızı mutlaka denemelisiniz '}
 // {name: 'Ervin Howell', phone: 'Shanna@melissa.tv', mesaj: ' Yeni Çıkan kahve yapma makinamızı deneyin.Memnun kalacaksınız'}
+
+let newListe = customerList.map(({id, name, email}) => {
+  let mesaj = "";
+
+  if (id % 2 === 0) {
+      mesaj = "Yeni Çıkan kahve yapma makinamızı deneyin. Memnun kalacaksınız";
+  } else {
+      mesaj = "Yeni çıkan XXX elektronik cihazımızı mutlaka denemelisiniz";
+  }
+
+  return {
+      name: name,
+      phone: email,
+      mesaj: mesaj
+  }
+});
+
+console.log(newListe);

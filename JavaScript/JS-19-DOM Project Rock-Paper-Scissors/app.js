@@ -71,6 +71,7 @@ const calcualteResult=()=>{
     if(pcScoreSpan.textContent=="10"|| yourScoreSpan.textContent=="10"){
         openModal()
     }
+    
 }
 const draw=()=>{
     messagePar.textContent="It's a draw"
@@ -82,12 +83,16 @@ const youLost=()=>{
     scoreCardSection.style.color=RED
     messagePar.style.backgroundColor=RED
     pcScoreSpan.textContent++
+    localStorage.setItem('pcScore', pcScoreSpan.textContent);
+    updateTopScore();
 }
 const youWin=()=>{
     messagePar.textContent="You Win"
     scoreCardSection.style.color=GREEN
     messagePar.style.backgroundColor=GREEN
     yourScoreSpan.textContent++
+    localStorage.setItem('yourScore', yourScoreSpan.textContent);
+    localStorage.setItem('yourScore', yourScoreSpan.textContent);
 }
 const openModal=()=>{
     modalCardSection.classList.add("show")
@@ -102,6 +107,7 @@ const openModal=()=>{
         playAgainButton.style.color=RED
     }
 }
+
 
 // local storage Veri yazma okuma
 

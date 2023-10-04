@@ -64,7 +64,7 @@ const updateEkran = () => {
 
   //?işlem girilince
 
- ustEkran.textContent = `${ustEkranYazi}  ${islem}`;
+ ustEkran.textContent = `${ustEkranYazi}  ${islem} ${altEkranYazi}`;
 
 };
 
@@ -130,9 +130,6 @@ switch (islem) {
 ustEkranYazi=""
 islem=""
 }
-
-
-
 
 
 //?AC butonuna basıldığında

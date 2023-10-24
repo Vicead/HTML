@@ -17,14 +17,14 @@ const searchEl = document.getElementById("search");
 
 //variables
 
-const apiKey = '4165adfa5fcdd24a9c3faba3aaf1d860';
+const apiKey = '4ed283ae2ece6cf1fe2fe7e75b2ea7a5';
 
-// localStorage.setItem("apiKey", '4165adfa5fcdd24a9c3faba3aaf1d860') //localstorage e şifresiz kaydeder
+// localStorage.setItem("apiKey", '4ed283ae2ece6cf1fe2fe7e75b2ea7a5') //localstorage e şifresiz kaydeder
 
 // const apiKey = localStorage.getItem("apiKey") //localstorage den alır
 
 
-// localStorage.setItem("api", EncryptStringAES('4165adfa5fcdd24a9c3faba3aaf1d860')); //local storage e şifreli kaydeder
+// localStorage.setItem("api", EncryptStringAES('4ed283ae2ece6cf1fe2fe7e75b2ea7a5')); //local storage e şifreli kaydeder
 
 // const apiKey = DecryptStringAES(localStorage.getItem("api")) //localstroge den alır şifresini çözer
 
@@ -157,7 +157,7 @@ const getWeatherData = async () =>{
                 msgSpan.innerText = `You already know the weather for ${name}, Please search for another city 😉`;
               }
             
-            setInterval(()=>{
+            setTimeout(()=>{
                 msgSpan.textContent = ''
             }, 4000)
         }
@@ -173,7 +173,7 @@ const getWeatherData = async () =>{
             msgSpan.innerText = "City not found!";
           }
             
-        setInterval(()=>{
+        setTimeout(()=>{
             msgSpan.innerText = ''
         }, 4000)
     }

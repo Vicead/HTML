@@ -2,7 +2,10 @@ import React from 'react'
 
 const Clock = () => {
   return (
-    <div>Clock</div>
+    <div>
+      <h2>{new Date().toLocaleDateString()}</h2>
+      
+    </div>
   )
 }
 

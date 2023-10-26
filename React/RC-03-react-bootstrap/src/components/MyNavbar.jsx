@@ -14,7 +14,7 @@ import {Button, Container, Form, Nav, NavDropdown, Navbar} from "react-bootstrap
 const MyNavbar = () => {
     //!navbar scrolling 
   return (
-    <Navbar expand="md" bg="light">
+    <Navbar expand="md" bg="light" >
       <Container fluid>
         <Navbar.Brand href="#">
             <img src={resim} alt="" width="70px"/>
@@ -38,9 +38,9 @@ const MyNavbar = () => {
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#" disabled>
+            {/* <Nav.Link href="#" disabled>
               Link
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
           <Form className="d-flex">
             <Form.Control

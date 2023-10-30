@@ -1,1 +1,22 @@
+@import "./variable";
 
+.btn-div{
+    button{
+        color: white;
+        margin-top: 5px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        &:hover{
+            cursor: pointer;
+            opacity: .5;
+        }
+    }
+    &--small{
+        padding: .6rem;
+        background-color: $lightGreen;
+    }
+    &--large{
+        padding: .6rem 1.5rem;
+        background-color: $darkGreen;
+    }
+}

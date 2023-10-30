@@ -1,0 +1,66 @@
+@import "../../scss/variables";
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+
+  .cards {
+    width: 500px;
+    height: 350px;
+    position: relative;
+
+    overflow: hidden; //taşan yada birbirinin üstüne binen olursa gizle
+    &:hover .card-over {
+      transform: translateY(0%);
+    } //ilk verdiğim absolute stiline dön
+    &:hover img {
+      opacity: 0.5;
+    }
+
+    .title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .date {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(
+        -40%,
+        -50%
+      ); //bulunduğu yerden tam ortalanması için sola yüzde 40 yukarı yüzde 50 git
+      z-index: 2;
+    }
+
+    img {
+      width: 500px;
+      height: 350px;
+      border-radius: 10px;
+    }
+
+    .card-over {
+      width: 500px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      transition: 0.7s ease-in-out;
+      z-index: 3;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: whitesmoke;
+      border-radius: 5px;
+      text-align: justify;
+      font-size: 1.5rem;
+      max-height: 75%;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}

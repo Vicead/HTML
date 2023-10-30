@@ -24,12 +24,18 @@
       top: 0;
       left: 0;
       z-index: 2;
+      color: $cardNavBgColor;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
     }
 
     .date {
       position: absolute;
       top: 50%;
       left: 50%;
+      color: $cardNavBgColor;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
       transform: translate(
         -40%,
         -50%

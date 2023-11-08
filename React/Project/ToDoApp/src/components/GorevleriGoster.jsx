@@ -2,7 +2,11 @@ import React from 'react'
 import {FaTimesCircle} from 'react-icons/fa'
 const GorevleriGoster = ({tasks,setTasks}) => {
 const deleteTask=(d)=>{
-  setTasks(tasks.filter((i)=>i.id!==d))
+const newTasks=tasks.filter((i)=>i.id!==d)
+  setTasks(newTasks)
+  localStorage.setItem("todos",JSON.stringify(newTasks))
+
+
 }
   return (
     <div>

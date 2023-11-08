@@ -6,9 +6,11 @@ const GorevEkle = ({ tasks, setTasks }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = tasks.length + 1;
-    setTasks([...tasks, { id: id, text: text, day: day, isDone: false }]);
+    const newTask={ id: id, text: text, day: day, isDone: false }
+    setTasks([...tasks, newTask]);
     setText("")
     setDay("")
+    localStorage.setItem("todos", JSON.stringify([...tasks,newTask]))
   };
   const[button,setButton]=useState(true)
   return (

@@ -7,6 +7,7 @@ const ProductList = () => {
  const[products,setProducts]=useState([])
  const[error,setError]=useState(false)
  const[loading,setLoading]=useState(true)
+ const subTotal=products.reduce((total,item)=>(item.price*item.dampingRate*item.amount)+total,0)
 
  const BASE_URL="https://63f4e5583f99f5855db9e941.mockapi.io/products"
  const getData=async()=>{ 
@@ -38,7 +39,7 @@ if(error){
               ))}
             </article>
             <article className="col-md-4 m-3">
-              <CardTotal />
+              <CardTotal subTotal={subTotal}/>
             </article>
           </>)}
           

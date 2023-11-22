@@ -3,7 +3,7 @@ import React from "react";
 const taxRate = 0.18;
 const shipping = 25;
 
-const CardTotal = () => {
+const CardTotal = ({subTotal}) => {
   
   
   
@@ -13,26 +13,26 @@ const CardTotal = () => {
         <tr className="text-end">
           <th className="text-start">Subtotal</th>
           <td>
-            $<span className="subtotal"></span>
+            $<span className="subtotal">{Number(subTotal).toFixed(2)}</span>
           </td>
         </tr>
         <tr className="text-end">
           <th className="text-start">Tax(18%)</th>
           <td>
-            $<span className="tax"></span>
+            $<span className="tax">{Number(subTotal*taxRate).toFixed(2)}</span>
           </td>
         </tr>
         <tr className="text-end">
           <th className="text-start">Shipping</th>
           <td>
-            $<span className="shipping"></span>
+            $<span className="shipping">{shipping.toFixed(2)}</span>
           </td>
         </tr>
         <tr className="text-end">
           <th className="text-start">Total</th>
           <td>
             $
-            <span className="total">
+            <span className="total">{Number(subTotal+subTotal*taxRate+shipping).toFixed(2)}
             </span>
           </td>
         </tr>

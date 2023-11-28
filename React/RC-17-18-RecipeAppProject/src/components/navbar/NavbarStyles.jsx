@@ -52,7 +52,7 @@ export const Menu = styled.div`
   /* içinde bulunduğu div in  stillerine göre ayarla kendini, bunu yazmazsak food app in altında kalacak */
   /* 3 kelime  açılınca üstteki özelliklerde olsun*/
   @media (max-width: 768px) {
-     overflow: hidden; 
+     /* overflow: hidden;  */
    /* display: none; */
     /* tamamen gizler, hamburger tıklanınca bile açılmaz, o yüzden hidden kullandık */
     /* uzun yazı olurda taşarsa gizle (hamburgere dönüşünce)*/
@@ -60,15 +60,15 @@ export const Menu = styled.div`
 
     width: 100%;
     /* height:200px; */
-    /* props olarak, osman=true geldi mesela */
-     /* max-height: ${({ osman }) => (osman ? "300px" : "0")};  */
+    /* props olarak, open=true geldi mesela */
+     /* max-height: ${({ open }) => (open ? "300px" : "0")};  */
 
      /*  alttaki gibi de kontrol edebiliriz . Menu div i display flex ve flex-direction column old için alt altalar*/
   
+display:${({open})=>(open ? "flex":"none")}
 
 
 
-     
 
     /* max-height:300px; */
     /* 3 çizgiye ilk tıklandığında 300 px açılsın, sonraki tıklamada kapansın */

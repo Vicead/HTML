@@ -5,7 +5,6 @@ import codingSvg from "../../assets/coding.svg"
 const About = () => {
   return (
     <div>
-
       <AboutContainer>
         <StyledImage src={codingSvg} />
 

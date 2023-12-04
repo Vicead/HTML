@@ -6,12 +6,14 @@ import MovieContextProvider from "./context/MovieContext";
 
 const App = () => {
   return (
+    <div className="dark:bg-[#23242a] min-h-screen">
     <AuthContextProvider>
       <MovieContextProvider>
         <AppRouter/>
         <ToastContainer/>
       </MovieContextProvider>
     </AuthContextProvider>
+    </div>
   );
 };
 

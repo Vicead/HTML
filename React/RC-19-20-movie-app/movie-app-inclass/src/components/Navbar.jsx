@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png"
 import { AuthContext } from "../context/AuthContext";
+import Switch from "./Switch";
 
 
 
@@ -21,7 +22,7 @@ export default function Navbar() {
     <>
       <Disclosure
         as="nav"
-        className="bg-neutral-100 dark:bg-gray-900 py-3 dark:text-white fixed top-0 w-full "
+        className="bg-neutral-100 dark:bg-gray-900 py-3 dark:text-white fixed top-0 w-full z-20 "
       >
         <div className="mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between">
@@ -33,7 +34,7 @@ export default function Navbar() {
 
               {currentUser && (<h5 className="mr-2 capitalize">{currentUser.displayName}</h5>)}
              
-         
+              <Switch />
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>

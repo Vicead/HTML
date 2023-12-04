@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const MovieCard = ({title,overview,poster_path,vote_average,id}) => {
-  const {currentUser}=useContext(AuthContext)
+const {currentUser}=useContext(AuthContext)
+const navigate=useNavigate()
   return (
+  
     <div
       className="movie"
       id="container"
+      onClick={()=>navigate("details/"+id)}
     >
       <img
         loading="lazy"

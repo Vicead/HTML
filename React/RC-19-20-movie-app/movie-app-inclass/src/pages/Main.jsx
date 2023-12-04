@@ -1,20 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import MovieCard from "../components/MovieCard";
-import { MovieContex } from "../context/MovieContext";
+import { MovieContext } from "../context/MovieContext";
 
-
+const API_KEY=process.env.REACT_APP_TMDB_KEY;
+const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 
 const Main = () => {
-  const {movies,loading}=useContext(MovieContex)
+  const {movies,loading, getMovies}=useContext(MovieContext)
+  const[searchTerm,setSearchTerm]=useState("");
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    getMovies(SEARCH_API + searchTerm);
+  }
   return (
     <>
-      <form className="flex justify-center p-2" >
+      <form className="flex justify-center p-2" onSubmit={handleSubmit} >
         <input
           type="search"
           className="w-80 h-8 rounded-md p-1 m-2"
           placeholder="Search a movie..."
-        
+          onChange={(e)=>setSearchTerm(e.target.value)}
         />
         <button className="btn-danger-bordered" type="submit">
           Search

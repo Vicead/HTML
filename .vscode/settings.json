@@ -1,5 +1,5 @@
 {
     "liveServer.settings.port": 5501,
     "git.ignoreLimitWarning": true,
-    "editor.inlineSuggest.showToolbar": "always"
+    "editor.inlineSuggest.showToolbar": "onHover"
 }

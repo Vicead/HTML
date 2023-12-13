@@ -70,15 +70,16 @@ const MenuListItems = () => {
           (link, index) => (
             <ListItem key={link.title} disablePadding>
               <ListItemButton onClick={()=>navigate(link.url)} sx={link.url==pathname ? selectedStyle : iconStyle} >
+                <ListItemIcon sx={{color:"inherit"}}>
                   <Box sx={{
                     // backgroundImage:`url(${link.icon})`,
                     width:24,
                     height:24,
-                    mr:2,
                     // backgroundColor:"black",
                     bgcolor:"currentColor",
                     mask:`url(${link.icon}) no-repeat center / contain`,
                   }} />
+                </ListItemIcon>
                 <ListItemText primary={link.title} />
               </ListItemButton>
             </ListItem>

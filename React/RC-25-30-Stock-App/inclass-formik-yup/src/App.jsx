@@ -3,17 +3,17 @@ import AppRouter from "./router/AppRouter";
 import { Provider } from "react-redux";
 import store, { persistor } from "./app/store";
 import { ToastContainer } from "react-toastify";
-import {PersistGate} from "redux-persist/integration/react"
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#454F5B',
+        main: "#454F5B",
       },
       secondary: {
-        main: '#454F5B',
-        second: '#161C24'
+        main: "#454F5B",
+        second: "#161C24",
       },
     },
   });

@@ -1,3 +1,5 @@
+//! register fonksiyonunun middlewareli kullanımı
+
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
@@ -8,12 +10,15 @@ import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
-import { Formik} from "formik";
-import useAuthCall from "../hooks/useAuthCall";
+import { Formik } from "formik";
 import RegisterForm, { SignupSchema } from "../components/RegisterForm";
+import { registerAsync } from "../features/authSliceMiddleware";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const {register} = useAuthCall()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Container maxWidth="lg">
       <Grid
@@ -58,7 +63,7 @@ const Register = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
-              register(values);
+              dispatch(registerAsync({values, navigate}));
               actions.resetForm();
               actions.setSubmitting(false);
             }}

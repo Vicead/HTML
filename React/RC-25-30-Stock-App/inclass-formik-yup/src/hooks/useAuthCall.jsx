@@ -11,12 +11,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
-const BASE_URL=import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const useAuthCall = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {token} = useSelector(store=>store.auth)
+  const { token } = useSelector((store) => store.auth);
+
   const register = async (userInfo) => {
     dispatch(fetchStart());
     try {
@@ -48,19 +49,18 @@ const useAuthCall = () => {
       toastErrorNotify("Login can not be performed");
     }
   };
+
   const logout = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.get(
-        `${BASE_URL}auth/logout/`,{headers:{
+      await axios.get(`${BASE_URL}auth/logout/`, {
+        headers: {
           Authorization: `Token ${token}`,
         },
-      }
-      );
-      dispatch(logoutSuccess())
+      });
+      dispatch(logoutSuccess());
       toastSuccessNotify("Logout performed");
       navigate("/");
-      console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
@@ -68,7 +68,7 @@ const useAuthCall = () => {
     }
   };
 
-  return { register, login, logout };
+  return { register, login , logout };
 };
 
 export default useAuthCall;

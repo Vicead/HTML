@@ -1,6 +1,4 @@
-import axios from "axios";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   //   brandsSuccess,
   // firmsSuccess,
@@ -8,18 +6,16 @@ import {
   fetchStart,
   getSuccess,
 } from "../features/stockSlice";
+import useAxios from "./useAxios";
 
-const useStockCall = () => {
-  const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const { token } = useSelector((state) => state.auth);
+const useStockCall = () => {  
+  const {axiosWithToken}=useAxios()
   const dispatch = useDispatch();
+
   const getFirms = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}firms/`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
+      const { data } = await axiosWithToken('firms/', {
       });
       console.log(data.data);
       //   dispatch(firmsSuccess(data.data))
@@ -28,13 +24,11 @@ const useStockCall = () => {
       dispatch(fetchFail());
     }
   };
+
   const getBrands = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}brands/`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
+      const { data } = await axiosWithToken(`brands/`, {
       });
       console.log(data.data);
       //   dispatch(brandsSuccess(data.data))
@@ -43,13 +37,11 @@ const useStockCall = () => {
       dispatch(fetchFail());
     }
   };
+
   const getStockData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}${url}/`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
+      const { data } = await axiosWithToken(`${url}/`, {
       });
       console.log(data.data);
       //   dispatch(brandsSuccess(data.data))
@@ -59,7 +51,40 @@ const useStockCall = () => {
     }
   };
 
-  return { getFirms, getBrands,getStockData };
+  const deleteStockData = async (url,id) => {
+    dispatch(fetchStart());
+    try {
+       await axiosWithToken.delete(`${url}/${id}`, {
+      });
+      getStockData(url)  
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+  const postStockData = async (url,body) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.post(`${url}/`,body);
+      getStockData(url)
+      } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+  const putStockData = async (url,body) => {
+    dispatch(fetchStart());
+    try {
+       await axiosWithToken.put(`${url}/${body._id}`,body);
+      getStockData(url)
+      } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+  
+
+  return { getFirms, getBrands,getStockData, deleteStockData, postStockData, putStockData };
 };
 
 export default useStockCall;

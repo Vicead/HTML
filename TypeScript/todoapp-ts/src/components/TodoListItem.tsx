@@ -11,6 +11,7 @@ interface ITodoListItem{
 const TodoListItem:FC<ITodoListItem> = ({todo,toggleTodo,deleteTodo}) => {
   return (
     <ListItem
+          sx= {{":hover":{cursor:"pointer"}}}
           disableGutters
           secondaryAction={
             <IconButton onClick={()=>deleteTodo(todo.id)} aria-label="delete">

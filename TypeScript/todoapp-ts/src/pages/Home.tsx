@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AddTodoComp from "../components/AddTodoComp";
 import TodoList from "../components/TodoList";
+import { SweetAlertIcons, SweetPosition, notify } from "../helper/sweetalert";
 
-interface ITodoType {
-  todo: string;
-  isDone: boolean;
-  id: string | number;
-  task?: string; //!optional
-}
+// interface ITodoType {
+//   todo: string;
+//   isDone: boolean;
+//   id: string | number;
+//   task?: string; //!optional
+// }
 
 const url: string = import.meta.env.VITE_BASE_URL;
 
@@ -30,41 +31,69 @@ const Home = () => {
   };
 
   // const addTodo = async (text:string) => {
-    
+
   // }
 
   // type AddFn = (text:string) => Promise<void>;
 
-  const addTodo:AddFn = async (text) => {
+  const addTodo: AddFn = async (text) => {
     try {
-      await axios.post(url,{todo:text,isDone:false})
-
+      await axios.post(url, { todo: text, isDone: false });
+      notify(
+        "The todo was created successfully!",
+        SweetAlertIcons.SUCCESS,
+        SweetPosition.Center
+      );
     } catch (error) {
-      console.log(error)
-    } finally{
-      getTodos()
+      console.log(error);
+      notify(
+        "The todo was not created successfully!",
+        SweetAlertIcons.ERROR,
+        SweetPosition.Center
+      );
+    } finally {
+      getTodos();
     }
-  }
-  
+  };
+
   const toggleTodo: ToggleFn = async (todo) => {
     try {
-        await axios.put(`${url}/${todo.id}`,{...todo, isDone: !todo.isDone})
+      await axios.put(`${url}/${todo.id}`, { ...todo, isDone: !todo.isDone });
+      notify(
+        "The todo was toggled!",
+        SweetAlertIcons.SUCCESS,
+        SweetPosition.TopStart
+      );
     } catch (error) {
-        console.log(error);
-    }finally{
-        getTodos();
+      console.log(error);
+      notify(
+        "The todo was not updated successfully!",
+        SweetAlertIcons.ERROR,
+        SweetPosition.BottomEnd
+      );
+    } finally {
+      getTodos();
     }
-  }
-
+  };
   const deleteTodo: DeleteFn = async (id) => {
     try {
-        await axios.delete(`${url}/${id}`)
+      await axios.delete(`${url}/${id}`);
+      notify(
+        "The todo deleted!",
+        SweetAlertIcons.SUCCESS,
+        SweetPosition.TopStart
+      );
     } catch (error) {
-        console.log(error);
-    }finally{
-        getTodos();
+      console.log(error);
+      notify(
+        "The todo was not updated successfully!",
+        SweetAlertIcons.ERROR,
+        SweetPosition.BottomEnd
+      );
+    } finally {
+      getTodos();
     }
-  }
+  };
 
   useEffect(() => {
     getTodos();
@@ -75,7 +104,7 @@ const Home = () => {
       <Typography color="error" align="center" variant="h2" component="h1">
         Todo App with Typescript
       </Typography>
-      <AddTodoComp addTodo={addTodo}/>
+      <AddTodoComp addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </Container>
   );

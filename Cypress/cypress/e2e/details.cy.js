@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 describe('recipe project', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/')
@@ -16,6 +15,7 @@ describe('recipe project', () => {
         cy.get("[data-test='contentParag']").should("be.visible")
         cy.get("[data-test='contentCal']").should("be.visible")
         cy.get("[data-test='contentImage']").should("be.visible")
+
     })
 
 })

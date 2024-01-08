@@ -13,7 +13,7 @@ const Navbar = () => {
         <span >recipe</span>
       </Logo>
       
-      <Hamburger data-test="hamburger" onClick={()=>setIsOpen(!isOpen)}>
+      <Hamburger data-test="homeHamburger" onClick={()=>setIsOpen(!isOpen)}>
         <span/>
         <span/>
         <span/>

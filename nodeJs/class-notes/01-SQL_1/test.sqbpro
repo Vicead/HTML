@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\obasa\Desktop\MyRepo\nodeJs\class-notes\01-SQL_1\test.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2749"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainAlbum"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="61"/><column index="2" value="300"/><column index="3" value="59"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- SELECT:Bu artık bir yorum satırıdır. SingleLine
+/*
+MultiLine
+Comment
+*/
+--SELECT 1 AS One; --Tek block işlemlerde noktalı-virgül zorunlu değildir.
+--SELECT 2 AS Two, /*araya yorum ekleyebilirim*/ 3 AS Three;
+--NOT Case-Sensetive (Case-Insensitive)
+--select 1 as one;--Noktalı-virgül kullanmak güzel alışkanlıktır
+--SELECT 1 AS one; 
+
+--*Piyasa Standartları:
+--**SQL temel komutları BÜYÜK harfle yazılır. SELECT * FROM * Album WHERE id=1;
+--**String verilerde tek-çift tırnak kullanabiliriz. Tercih edilen TEK TIRNAKTIR. -&gt; SELECT 'string' AS yazi;
+--**Her bir temel komut ayrı bir satıra yazılır.
+/*
+SELECT fieldname
+FROM tableName
+WHERE ...
+*/
+----------SQL----------
+--*SELECT -Seç ve getir.
+--*From --Hangi tablodan?
+
+--SELECT * FROM Album;--'*'== Tüm sütunlar
+--SELECT AlbumId, Title FROM Album; -- İstenilen sutunları getir. --Tavsiye edilen yöntem ayrı ayrı yazmaktır.
+
+--*AS --Tabloları ve/veya sütunları geçici olarak isimlendirme için kullanılır.
+--SELECT 'data data' AS baslik; --string yazdır.
+--SELECT 1+2 AS sonuc; --Matematiksel ifade yazdır.
+--SELECT AlbumId AS numara,  Title AS baslik FROM Album;--Sütun isimlendirme
+--SELECT AlbumId+3 AS numara, Title AS baslik FROM Album;
+SELECT Alb.AlbumId AS numara, Alb.Title AS baslik FROM Album AS alb;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

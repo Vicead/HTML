@@ -8,6 +8,8 @@ const router = require('express').Router()
 const { User } = require('../controllers/userController')
 
 // URL: /user
+router.post('/login', User.login)
+router.get('/logout', User.logout)
 
 router.route('/')
     .get(User.list)
@@ -19,3 +21,5 @@ router.route('/:userId')
     .delete(User.delete)
 
 module.exports = router
+
+

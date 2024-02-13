@@ -38,7 +38,19 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        set: (password) => passwordEncrypt(password)
+        set: (password) => passwordEncrypt(password), // return 64 chars hexadecimal (0-F)
+        // set: (password) => {
+        //     if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password))
+        //         return passwordEncrypt(password)
+        //     else
+        //         return 'wrong'
+        // },
+        // validate: [
+        //     (password) => { return password == 'wrong' ? false : true },
+        //     'Password type is incorrect'
+        // ]
+        // set: (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password) ? passwordEncrypt(password) : 'wrong',
+        // validate: (password) => password == 'wrong' ? false : true
     },
 
     firstName: String,

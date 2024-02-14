@@ -25,6 +25,11 @@ app.use(session({
     // maxAge: 1000 * 60 * 60 * 24 // miliseconds
 }))
 
+/* -------------------------------------------------------------------------- */
+// Filtring, Searching, Sorting, Pagination
+
+app.use(require('./src/middlewares/findSearchSortPage.js'))
+
 /* ------------------------------------------------------- */
 // JSON
 app.use(express.json()) //konuma dikkat

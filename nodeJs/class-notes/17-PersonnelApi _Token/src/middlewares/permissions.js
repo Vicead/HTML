@@ -24,7 +24,7 @@ module.exports = {
 
         }else{
             res.errorStatusCode=403
-            throw new Error('No permission, you have to LOGIN as a  ADMIN')
+            throw new Error('No permission, you have to LOGIN as an  ADMIN')
 
         }
         

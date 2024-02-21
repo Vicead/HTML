@@ -39,28 +39,28 @@ app.use(require('cookie-session')({ secret: process.env.SECRET_KEY }))
 
 // res.getModelList():
 app.use(require('./src/middlewares/findSearchSortPage'))
-
+/*
 // Login/Logout Control Middleware
-// app.use(async (req, res, next) => {
+app.use(async (req, res, next) => {
 
-//     const Personnel = require('./src/models/personnel.model')
+    const Personnel = require('./src/models/personnel.model')
 
-//     req.isLogin = false
+    req.isLogin = false
 
-//     if (req.session?.id) {
+    if (req.session?.id) {
 
-//         const user = await Personnel.findOne({ _id: req.session.id })
+        const user = await Personnel.findOne({ _id: req.session.id })
 
-//         // if (user && user.password == req.session.password) {
-//         //     req.isLogin = true
-//         // }
-//         req.isLogin = user && user.password == req.session.password
-//     }
-//     console.log('isLogin: ', req.isLogin)
+        // if (user && user.password == req.session.password) {
+        //     req.isLogin = true
+        // }
+        req.isLogin = user && user.password == req.session.password
+    }
+    console.log('isLogin: ', req.isLogin)
 
-//     next()
-// })
-
+    next()
+})
+*/
 /* ------------------------------------------------------- */
 // Routes:
 
@@ -74,18 +74,18 @@ app.all('/', (req, res) => {
     })
 })
 
+//authentication
+app.use(require('./src/middlewares/authentication'))
 // /departments
 app.use('/departments', require('./src/routes/department.router'))
 // /personnels
 app.use('/personnels', require('./src/routes/personnel.router'))
-// /tokens
+// /token
 app.use('/tokens', require('./src/routes/token.router'))
-// /auths (login logout)
+// auth (login logout)
 app.use('/auth', require('./src/routes/auth.router'))
 
 /* ------------------------------------------------------- */
-// authentication:
-app.use(require('./src/middlewares/authentication'))
 
 // errorHandler:
 app.use(require('./src/middlewares/errorHandler'))

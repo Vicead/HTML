@@ -24,8 +24,9 @@ const PORT = process.env?.PORT || 8000
 const morgan=require('morgan')
 // console.log(morgan);
 // app.use(morgan('combined'))
+// custom morgan
+// app.use(morgan('IP:remote-addr TIME:[:date[clf]] REQ:":method :url HTTP/:http-version" RES::status :res[content-length] APP:":user-agent"'))
 
-// LOG kayıt tutma
 
 const fs = require('node:fs')// file system
 
@@ -36,15 +37,25 @@ app.use(morgan('combined', {
     stream: fs.createWriteStream(`./logs/${today}.log`, { flags: 'a+' })
 }))
 
-//npm i swagger-ui-express
+// Documentation Middlewares:
+// npm i swagger-ui-express
 const swaggerUi = require('swagger-ui-express')
 //swagger json
 const swaggerJson = require('./swagger.json') 
 app.use('/docs/swagger', swaggerUi.serve, swaggerUi.setup(swaggerJson, { swaggerOptions: { persistAuthorization: true } }))
-
+//  npm i redoc-expres
+const redoc = require('redoc-express')
+app.use('/docs/json', (req, res) => {
+    res.sendFile('swagger.json', { root: '.' })
+})
+app.use('/docs/redoc', redoc({
+    specUrl: '/docs/json',
+    title: 'API Docs',
+}))
 
 // asyncErrors to errorHandler:
 require('express-async-errors')
+
 
 /* ------------------------------------------------------- */
 // Configrations:
@@ -95,7 +106,15 @@ app.all('/', (req, res) => {
         error: false,
         message: 'Welcome to PERSONNEL API',
         session: req.session,
-        isLogin: req.isLogin
+        isLogin: req.isLogin,
+        api: {
+            documents: {
+                swagger: 'http://127.0.0.1:8000/docs/swagger',
+                redoc: 'http://127.0.0.1:8000/docs/redoc',
+                json: 'http://127.0.0.1:8000/docs/json',
+            },
+            contact: 'clarusway.com'
+        },
     })
 })
 

@@ -26,7 +26,7 @@ const document={
 		contact: { name: "Clarusway", email: "qadir@clarusway.com" },
 		license: { name: "BSD License", },
 	},
-    host: `${HOST}: ${PORT}`,
+    host: `${HOST}:${PORT}`, //! arada bpşluk olmasın
     basePath: '/',
 	schemes: ['http', 'https'],
 	// JWT Settings:

@@ -21,13 +21,23 @@ module.exports = async (req, res, next) => {
     if (tokenKey) {
 
         if (tokenKey[0] == 'Token') {
-            // SimpleToken:
+        // SimpleToken:
+
             const tokenData = await Token.findOne({ token: tokenKey[1] }).populate('userId')
             req.user = tokenData ? tokenData.userId : undefined
-        }else if(tokenKey[0] == 'Bearer'){
-            // JWT:
+
+        } else if (tokenKey[0] == 'Bearer') {
+        // JWT:
+
             jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (error, data) => {
-                req.user = data 
+                if (error) {
+                    res.status(401).send({
+                        error: true,
+                        message: 'JWT accessToken expires.'
+                    })
+                } else {
+                    req.user = data
+                }
             })
         }
     }

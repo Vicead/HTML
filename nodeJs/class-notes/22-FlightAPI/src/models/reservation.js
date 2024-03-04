@@ -15,11 +15,11 @@ const { default: mongoose } = require("mongoose")
     ]
 }
 // reservation plus
-/*
-eğer verilen id ye ait bir yolcu var ise rezervasyona ekle
-id ile değil ad soyad mail ile oluşturulmak isteniyor ise
-    - bu maile ait yolcu var ise onun id sini al ekle
-    - yok ise yolcuyu oluştur sonra id sini ekle
+/*  
+    eğer verilen id ye ait bir yolcu var ise rezervasyona ekle
+    id ile değil ad soyad mail ile oluşturulmak isteniyor ise
+    bu maile ait yolcu var ise onun id sini al ekle
+    yok ise yolcuyu oluştur sonra id sini ekle
 */
 /*
 {
@@ -41,17 +41,18 @@ id ile değil ad soyad mail ile oluşturulmak isteniyor ise
 // const passwordEncrypt = require('../helpers/passwordEncrypt')
 
 const ReservationSchema = new mongoose.Schema({
+    
     flightId:{
         type: mongoose.Schema.Types.ObjectId, 
         ref : 'Flight',
         required: true,
     },
+
     // passengers:{
     //     type: mongoose.Schema.Types.ObjectId, 
     //     ref : 'Passenger',
     //     required: true,
     // },
-
     passengers: [],
 
     createdId:{

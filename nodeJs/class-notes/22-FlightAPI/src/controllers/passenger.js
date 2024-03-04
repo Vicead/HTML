@@ -22,7 +22,7 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(Passenger)
+        const data = await res.getModelList(Passenger, 'createdId')
 
         res.status(200).send({
             error: false,
@@ -38,16 +38,14 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                    "username": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "isActive": true,
-                    "isStaff": false,
-                    "isAdmin": false,
-                }
+                schema: { $ref: '#/definitions/Passenger' }
+
             }
-        */      
+        */
+
+        // set createdId from logined user:
+        req.body.createdId = req.user._id
+
         const data = await Passenger.create(req.body)
 
         res.status(201).send({
@@ -62,7 +60,7 @@ module.exports = {
             #swagger.summary = "Get Single Passenger"
         */
 
-        const data = await Passenger.findOne({ _id: req.params.id })
+        const data = await Passenger.findOne({ _id: req.params.id }).populate('createdId')
 
         res.status(200).send({
             error: false,
@@ -78,15 +76,8 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                    "Passengername": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "isActive": true,
-                    "isStaff": false,
-                    "isAdmin": false,
-                }
-            }
+                schema: { $ref: '#/definitions/Passenger' }
+           }
         */
 
         const data = await Passenger.updateOne({ _id: req.params.id }, req.body, { runValidators: true })

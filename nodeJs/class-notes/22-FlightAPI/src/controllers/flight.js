@@ -22,7 +22,7 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(Flight)
+        const data = await res.getModelList(Flight, 'createdId')
 
         res.status(200).send({
             error: false,
@@ -38,20 +38,17 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                    "Flightname": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "isActive": true,
-                    "isStaff": false,
-                    "isAdmin": false,
-                }
+                schema: { $ref: '#/definitions/Flight' }
             }
         */
         /* EĞER login olan kullanıcı admin değilse post işleminde yetkileri false  
         req.body.isStaff=false
         req.body.isAdmin=false
         */
+
+        // set createdId from logined user:
+        req.body.createdId = req.user._id
+
         const data = await Flight.create(req.body)
 
         res.status(201).send({
@@ -66,7 +63,7 @@ module.exports = {
             #swagger.summary = "Get Single Flight"
         */
 
-        const data = await Flight.findOne({ _id: req.params.id })
+        const data = await Flight.findOne({ _id: req.params.id }).populate('createdId')
 
         res.status(200).send({
             error: false,
@@ -83,12 +80,8 @@ module.exports = {
                 in: 'body',
                 required: true,
                 schema: {
-                    "Flightname": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "isActive": true,
-                    "isStaff": false,
-                    "isAdmin": false,
+                    schema: { $ref: '#/definitions/Flight' }
+
                 }
             }
         */

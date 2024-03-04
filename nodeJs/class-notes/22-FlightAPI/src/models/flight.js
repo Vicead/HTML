@@ -70,16 +70,22 @@ const FlightSchema = new mongoose.Schema({
     }
 
 }, { collection: 'flights', timestamps: true })
-// mongoose middleware
 
+// mongoose middleware
+// https://mongoosejs.com/docs/middleware.html
+
+// https://www.w3schools.com/jsref/jsref_tolocalestring.asp
 const dateToLocaleString= require('../helpers/dateToLocaleString')
-// pre ,init, pre save,postsave ...
-FlightSchema.pre('init',function(document){
-    // document.extra="deneme"
-    // document.departureDateStr=document.departureDate.toLocaleString('tr-tr',{dataStyle:'full',timeStyle:'medium'})
-    document.departureDateStr=dateToLocaleString(document.departureDate)
-    document.arrivalDateStr=dateToLocaleString(document.arrivalDate)
-    document.__v=undefined // görünümden kaldırır
+// pre ,init, pre save, post save ...
+
+//? Veriyi çıktı vermeden hemen önce manipulasyon:
+FlightSchema.pre('init', function(document){
+
+    // document.extra = "deneme"
+    // document.departureDateStr = document.departureDate.toLocaleString('tr-tr',{dataStyle:'full',timeStyle:'medium'})
+    document.departureDateStr = dateToLocaleString(document.departureDate)
+    document.arrivalDateStr = dateToLocaleString(document.arrivalDate)
+    document.__v = undefined // görünümden kaldırır
 })
 
 /* ------------------------------------------------------- */

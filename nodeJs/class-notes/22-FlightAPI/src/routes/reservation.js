@@ -14,7 +14,7 @@ const reservation = require('../controllers/reservation')
 router.route('/')
     .get(permissions.isLogin, reservation.list)
     .post(permissions.isLogin,reservation.create)
-""
+
 router.route('/:id')
     .get(permissions.isLogin, reservation.read)
     .put( permissions.isLogin,reservation.update)

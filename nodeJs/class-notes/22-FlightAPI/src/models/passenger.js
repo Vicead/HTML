@@ -10,7 +10,6 @@ const { mongoose } = require('../configs/dbConnection')
     "gender": "M",
     "email": "cihan@site.com",
     "createdId": "65e1936b5a6e353e08758da6"
-    
 }
 {
     "firstName": "esra",
@@ -18,7 +17,6 @@ const { mongoose } = require('../configs/dbConnection')
     "gender": "F",
     "email": "esra@site.com",
     "createdId": "65e1936b5a6e353e08758da6"
-    
 }
 {
     "firstName": "omer",
@@ -26,7 +24,6 @@ const { mongoose } = require('../configs/dbConnection')
     "gender": "M",
     "email": "omer@site.com",
     "createdId": "65e1936b5a6e353e08758da6"
-    
 }
 /* ------------------------------------------------------- */
 // Passenger Model:
@@ -40,35 +37,36 @@ const PassengerSchema = new mongoose.Schema({
         trim: true,
         required: true,
     },
+
     lastName: {
         type: String,
         trim: true,
         required: true,
     },
+
     gender: {
         type: String,
-        enum:['M','F',null],
-        default:null
+        enum: ['M', 'F', null],
+        default: null
     },
 
     email: {
         type: String,
         trim: true,
         required: [true, 'Email field must be required'],
-        unique: [true, 'There is this email. Email field must be unique'],
-    
+        unique: [true, 'There is this email. Email field must be unique.'],
         validate: [
-            (email) =>{ 
-                const regexEmailCheck=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-                return regexEmailCheck.test(email)                
+            (email) => {
+                const regexEmailCheck = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                return regexEmailCheck.test(email)
             },
-            'Email type is not correct.'            
+            'Email type is not correct.'
         ]
     },
 
-    createdId:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref : 'User',
+    createdId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         trim: true,
         required: true,
     }

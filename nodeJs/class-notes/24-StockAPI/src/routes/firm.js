@@ -7,7 +7,8 @@ const router = require('express').Router()
 // routes/firm:
 
 const firm = require('../controllers/firm')
-
+const {isAdmin}=require('../middlewares/permissions')
+router.use(isAdmin)
 // URL: /firms
 
 router.route('/')

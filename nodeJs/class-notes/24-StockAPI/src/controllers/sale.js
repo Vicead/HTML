@@ -5,6 +5,8 @@
 "use strict"
 
 const Sale = require('../models/sale')
+const Product = require('../models/product')
+
 
 module.exports = {
 
@@ -42,15 +44,26 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                    "Salename": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "first_name": "test",
-                    "last_name": "test",
-                }
+                schema: { $ref: '#/definitions/Sale' }
             }
         */
+        
+        const curentProduct=await Product.findOne({ _id:req.body.product_id })
+        
+        if(curentProduct.quantity >= req.body.quantity){
+            
+            // crate sale process
+            const data=await Sale.create(req.body)
+
+            const updateProduct=await Product.updateOne({_id:data.product_id}, { $inc : { quantity:-data.quantity } })  
+
+        }else{
+
+            res.errorStatusCode=422
+            throw new Error('not enogh stock')
+        }  
+    
+            
         const data=await Sale.create(req.body)
         
         res.status(201).send({
@@ -80,32 +93,55 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                    "Salename": "test",
-                    "password": "1234",
-                    "email": "test@site.com",
-                    "first_name": "test",
-                    "last_name": "test",
-                }
+                schema: { $ref: '#/definitions/Sale' }
             }
         */
-        const data=await Sale.updateOne({_id:req.params.id},req.body,{ runValidators:true})
-    
-        res.status(202).send({
+       if(req.body?.quantity){
+
+            // first get curentSale
+            const curentSale=await Sale.findOne({_id:req.params.id })
+            
+            // calculate diference
+            const difquantity=req.body.quantity - curentSale.quantity   
+
+            // update product's cuantity
+            const updateProduct=await Product.updateOne(
+                {_id:curentSale.product_id, quantity:{$gte : difquantity } }, 
+                 { $inc : { quantity: difquantity } })
+            
+                if(updateProduct.modifiedCount==0) {              
+
+                    res.errorStatusCode=422
+                    throw new Error('not enogh stock')
+                }  
+
+            const data=await Sale.updateOne({_id:req.params.id},req.body,{ runValidators:true})
+            res.status(202).send({
                 error: false,
                 data,
                 newdata: await Sale.findOne({_id:req.params.id})  
-        })   
-        
+        }) 
+       }              
     },
-
     delete: async (req, res) => {
         /*
             #swagger.tags = ["Sales"]
             #swagger.summary = "Delete Sale"
         */
+
+        // first get curentSale
+        const curentSale=await Sale.findOne({_id:req.params.id }) 
+        
+        // delete curentSale        
         const data=await Sale.deleteOne({_id:req.params.id})
 
+        // update product's cuantity
+        const updateProduct=await Product.updateOne({_id:curentSale.product_id}, 
+            { $inc : { quantity:+curentSale.quantity } })  
+
+    
+
+        
         res.status(data.deletedCount ? 204 : 404).send({
                 error: false,
                 data,                  

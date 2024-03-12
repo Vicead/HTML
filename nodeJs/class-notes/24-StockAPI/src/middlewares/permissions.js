@@ -29,7 +29,7 @@ module.exports = {
         return next()
         
         // only Admin:
-        if (req.user && req.user.is_active && req.user.is_superadmin) {
+        if (req.user && req.user.is_active && req.user.is_admin) {
 
             next()
 
@@ -46,7 +46,7 @@ module.exports = {
         return next()
         
         // only Admin or Staff:
-        if (req.user && req.user.is_active && (req.user.is_superadmin || req.user.is_staff)) {
+        if (req.user && req.user.is_active && (req.user.is_admin || req.user.is_staff)) {
 
             next()
 

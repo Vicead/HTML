@@ -51,6 +51,8 @@ module.exports = {
                 }
             }
         */
+        req.body.is_Staff=false
+        req.body.is_Admin=false    
         const data=await User.create(req.body)
         
         res.status(201).send({

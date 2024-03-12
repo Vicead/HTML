@@ -7,9 +7,9 @@ const router = require('express').Router()
 // routes/sale:
 
 const sale = require('../controllers/sale')
-
+const {isStaff}=require('../middlewares/permissions')
 // URL: /sales
-
+router.use(isStaff)
 router.route('/')
     .get(sale.list)
     .post(sale.create)

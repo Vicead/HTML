@@ -5,8 +5,8 @@
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- *
 {
-    "category_id": "65343222b67e9681f937f203",
-    "brand_id": "65343222b67e9681f937f107",
+    "categoryId": "65343222b67e9681f937f203",
+    "brandId": "65343222b67e9681f937f107",
     "name": "Product 1"
 }
 /* ------------------------------------------------------- */
@@ -14,13 +14,13 @@ const { mongoose } = require('../configs/dbConnection')
 
 const ProductSchema = new mongoose.Schema({
 
-    category_id: {
+    categoryId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
         required: true
     },
 
-    brand_id: {
+    brandId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
         required: true
@@ -35,8 +35,9 @@ const ProductSchema = new mongoose.Schema({
     quantity: {
         type: Number,
         default: 0
-    }
-    
+    },
 
 }, { collection: 'products', timestamps: true})
+
+/* ------------------------------------------------------- */
 module.exports = mongoose.model('Product', ProductSchema)

@@ -9,7 +9,7 @@ const app = express()
 // Required Modules:
 
 // envVariables to process.env:
-require('dotenv').config()
+require('dotenv').config({ path: __dirname + '/.env' })
 const HOST = process.env?.HOST || '127.0.0.1'
 const PORT = process.env?.PORT || 8000
 
@@ -29,14 +29,24 @@ dbConnection()
 // Accept JSON:
 app.use(express.json())
 
-// Call static uploadFile:
-app.use('/upload', express.static('./upload'))
+// Cors:
+const cors = require('cors');
+// app.use(cors())
+//Default CORS
+// app.use(cors({
+//     "origin": "*",
+//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     "preflightContinue": false,
+//     "optionsSuccessStatus": 204
+// }))
+app.use(cors({
+    "origin": ["http://localhost:5173","http://localhost:3000"],
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+
+}))
 
 // Check Authentication:
 app.use(require('./src/middlewares/authentication'))
-
-// Run Logger:
-app.use(require('./src/middlewares/logger'))
 
 // res.getModelList():
 app.use(require('./src/middlewares/findSearchSortPage'))
@@ -46,16 +56,19 @@ app.use(require('./src/middlewares/findSearchSortPage'))
 
 // HomePath:
 app.all('/', (req, res) => {
-    res.send({
-        error: false,
-        message: 'Welcome to Stock Management API',
-        documents: {
-            swagger: '/documents/swagger',
-            redoc: '/documents/redoc',
-            json: '/documents/json',
-        },
-        user: req.user
-    })
+    
+    res.send(`
+        <h3>Stock Management API Service</h3>
+        <hr>
+        <p>
+            Documents:
+            <ul> 
+                <li><a href="/documents/swagger">SWAGGER</a></li>
+                <li><a href="/documents/redoc">REDOC</a></li>
+                <li><a href="/documents/json">JSON</a></li>
+            </ul>
+        </p>
+    `)
 })
 
 // Routes:
@@ -67,7 +80,7 @@ app.use(require('./src/routes'))
 app.use(require('./src/middlewares/errorHandler'))
 
 // RUN SERVER:
-app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
+app.listen(PORT, () => console.log(`http://${HOST}:${PORT}`))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):

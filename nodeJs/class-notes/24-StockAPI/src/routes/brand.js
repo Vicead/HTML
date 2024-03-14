@@ -5,22 +5,21 @@
 const router = require('express').Router()
 /* ------------------------------------------------------- */
 // routes/brand:
-const permission=require('../middlewares/permissions')
-// const {isAdmin}=require('../middlewares/permissions')
 
+const permissions = require('../middlewares/permissions')
 const brand = require('../controllers/brand')
 
 // URL: /brands
 
 router.route('/')
-    .get(permission.isStaff, brand.list)
-    .post(permission.isAdmin, brand.create)
+    .get(permissions.isStaff, brand.list)
+    .post(permissions.isStaff, brand.create)
 
 router.route('/:id')
-    .get(permission.isStaff,brand.read)
-    .put(permission.isAdmin,brand.update)
-    .patch(permission.isAdmin,brand.update)
-    .delete(permission.isAdmin,brand.delete)
+    .get(permissions.isStaff, brand.read)
+    .put(permissions.isAdmin, brand.update)
+    .patch(permissions.isAdmin, brand.update)
+    .delete(permissions.isAdmin, brand.delete)
 
 /* ------------------------------------------------------- */
 module.exports = router

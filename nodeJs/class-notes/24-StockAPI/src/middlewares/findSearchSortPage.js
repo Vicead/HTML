@@ -4,16 +4,23 @@
 ------------------------------------------------------- */
 // app.use(findSearchSortPage):
 
-module.exports = (req, res, next) => {  
-// Searching & Sorting & Pagination:  
+module.exports = (req, res, next) => {
+// Searching & Sorting & Pagination:
+
+    // FILTERING: URL?filter[key1]=value1&filter[key2]=value2
+    let filter = req.query?.filter || {}
 
     // SEARCHING: URL?search[key1]=value1&search[key2]=value2
-    const search = req.query?.search || {}
-    for (let key in search) search[key] = { $regex: search[key], $options: 'i' }
+    let search = req.query?.search || {}
+    // for (let key in search) search[key] = { $regex: search[key], $options: 'i' }
+    /* toString Searching: */
+    let where = [];
+    for (let key in search) where.push(`this.${key}.toString().includes('${search[key]}')`)
+    search = where.length ? { $where: where.join(' && ') } : {}
+    /* toString Searching: */
 
-    // Cancelled -> SORTING: URL?sort[key1]=1&sort[key2]=-1 (1:ASC, -1:DESC)
-    // Mongoose=^8.0 -> SORTING: URL?sort[key1]=asc&sort[key2]=desc (asc: A->Z - desc: Z->A)
-    const sort = req.query?.sort || {}
+    // SORTING: URL?sort[key1]=asc&sort[key2]=desc (asc: A->Z - desc: Z->A)
+    let sort = req.query?.sort || {}
 
     // PAGINATION: URL?page=1&limit=10
     // LIMIT:
@@ -27,21 +34,19 @@ module.exports = (req, res, next) => {
     skip = skip > 0 ? skip : (page * limit)
 
     // Run SearchingSortingPagination engine for Model:
-    res.getModelList = async function (Model, filters = {}, populate = null) {
+    res.getModelList = async function (Model, modelFilters = {}, populate = null) {
 
-        const filtersAndSearch = { ...filters, ...search  }
-
-        return await Model.find(filtersAndSearch).sort(sort).skip(skip).limit(limit).populate(populate)
+        return await Model.find({ ...modelFilters, ...filter, ...search }).sort(sort).skip(skip).limit(limit).populate(populate)
     }
 
     // Details:
-    res.getModelListDetails = async function (Model, filters = {}) {
+    res.getModelListDetails = async function (Model, modelFilters = {}) {
 
-        const filtersAndSearch = { ...filters, ...search }
-
-        const dataCount = await Model.count(filtersAndSearch)
+        const data = await Model.find({ ...modelFilters, ...filter, ...search })
+        const dataCount = data.length
 
         let details = {
+            filter,
             search,
             sort,
             skip,

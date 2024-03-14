@@ -2,10 +2,6 @@
 /* -------------------------------------------------------
 	EXPRESS - Personnel API
 ------------------------------------------------------- */
-require('dotenv').config()
-const HOST = process.env?.HOST || '127.0.0.1'
-const PORT = process.env?.PORT || 8000
-/* ------------------------------------------------------- */
 const swaggerAutogen = require('swagger-autogen')()
 const packageJson = require('./package.json')
 
@@ -18,21 +14,21 @@ const document = {
 		contact: { name: packageJson.author, email: "qadir@clarusway.com" },
 		license: { name: packageJson.license, },
 	},
-	host: `${HOST}:${PORT}`,
+	host: 'stock-api-js.fullstack.clarusway.com',
 	basePath: '/',
-	schemes: ['http', 'https'],
+	schemes: ['https'],
 	consumes: ["application/json"],
 	produces: ["application/json"],
 	securityDefinitions: {
 		Token: {
-			type: 'apiKey',
 			in: 'header',
+			type: 'apiKey',
 			name: 'Authorization',
-			description: 'Simple Token Authentication * Example: <b>Token ...tokenKey...</b>'
+			description: 'Token Authentication * Example: <b>Token ...tokenKey...</b>'
 		},
 		Bearer: {
-			type: 'apiKey',
 			in: 'header',
+			type: 'apiKey',
 			name: 'Authorization',
 			description: 'JWT Authentication * Example: <b>Bearer ...accessToken...</b>'
 		},

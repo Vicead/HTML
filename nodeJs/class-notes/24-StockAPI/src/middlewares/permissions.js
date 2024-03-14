@@ -8,11 +8,7 @@ module.exports = {
 
     isLogin: (req, res, next) => {
 
-        // Set Passive:
-        return next()
-
-        // any User:
-        if (req.user && req.user.is_active) {
+        if (req.user && req.user.isActive) {
 
             next()
 
@@ -25,35 +21,27 @@ module.exports = {
 
     isAdmin: (req, res, next) => {
 
-        // Set Passive:
-        return next()
-        
-        // only Admin:
-        if (req.user && req.user.is_active && req.user.is_admin) {
+        if (req.user && req.user.isActive) {
 
             next()
 
         } else {
 
             res.errorStatusCode = 403
-            throw new Error('NoPermission: You must login and to be Admin.')
+            throw new Error('NoPermission: You must login.')
         }
     },
 
     isStaff: (req, res, next) => {
 
-        // Set Passive:
-        return next()
-        
-        // only Admin or Staff:
-        if (req.user && req.user.is_active && (req.user.is_admin || req.user.is_staff)) {
+        if (req.user && req.user.isActive) {
 
             next()
 
         } else {
 
             res.errorStatusCode = 403
-            throw new Error('NoPermission: You must login and to be Staff.')
+            throw new Error('NoPermission: You must login.')
         }
-    },
+    }
 }

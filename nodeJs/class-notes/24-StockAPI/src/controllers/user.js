@@ -2,9 +2,11 @@
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
-"use strict"
+// User Controller:
 
 const User = require('../models/user')
+const Token = require('../models/token')
+const passwordEncrypt = require('../helpers/passwordEncrypt')
 
 module.exports = {
 
@@ -13,26 +15,25 @@ module.exports = {
             #swagger.tags = ["Users"]
             #swagger.summary = "List Users"
             #swagger.description = `
-                You can send query with endpoint for search[], sort[], page and limit.
+                You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint.
                 <ul> Examples:
+                    <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>
                     <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
-                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
-                    <li>URL/?<b>page=2&limit=1</b></li>
+                    <li>URL/?<b>sort[field1]=asc&sort[field2]=desc</b></li>
+                    <li>URL/?<b>limit=10&page=1</b></li>
                 </ul>
             `
         */
-        const data=await res.getModelList(User)
-        // res.status(200).send({
-        //     error: false,
-        //     details:await res.getModelListDetails(User),
-        //     data  
-        // })
-        
-        //FOR REACT ? 
-        res.status(200).send({          
-            data  
+
+        const filters = (req.user?.isAdmin) ? {} : { _id: req.user._id }
+
+        const data = await res.getModelList(User, filters)
+
+        res.status(200).send({
+            error: false,
+            details: await res.getModelListDetails(User),
+            data
         })
-       
     },
 
     create: async (req, res) => {
@@ -46,20 +47,29 @@ module.exports = {
                     "username": "test",
                     "password": "1234",
                     "email": "test@site.com",
-                    "first_name": "test",
-                    "last_name": "test",
+                    "firstName": "test",
+                    "lastName": "test",
                 }
             }
         */
-        req.body.is_Staff=false
-        req.body.is_Admin=false    
-        const data=await User.create(req.body)
-        
-        res.status(201).send({
-                error: false,
-                data  
-        })           
 
+        // Disallow setting admin/staff:
+        req.body.isStaff = false
+        req.body.isAdmin = false
+
+        const data = await User.create(req.body)
+
+        // Create token for auto-login:
+        const tokenData = await Token.create({
+            userId: data._id,
+            token: passwordEncrypt(data._id + Date.now())
+        })
+
+        res.status(201).send({
+            error: false,
+            token: tokenData.token,
+            data
+        })
     },
 
     read: async (req, res) => {
@@ -67,12 +77,15 @@ module.exports = {
             #swagger.tags = ["Users"]
             #swagger.summary = "Get Single User"
         */
-        const data=await User.findOne({_id:req.params.id})
+
+        const filters = (req.user?.isAdmin) ? { _id: req.params.id } : { _id: req.user._id }
+
+        const data = await User.findOne(filters)
+
         res.status(200).send({
             error: false,
-            data  
-        })      
-        
+            data
+        })
     },
 
     update: async (req, res) => {
@@ -86,19 +99,22 @@ module.exports = {
                     "username": "test",
                     "password": "1234",
                     "email": "test@site.com",
-                    "first_name": "test",
-                    "last_name": "test",
+                    "firstName": "test",
+                    "lastName": "test",
                 }
             }
         */
-        const data=await User.updateOne({_id:req.params.id},req.body,{ runValidators:true})
-    
+
+        const filters = (req.user?.isAdmin) ? { _id: req.params.id } : { _id: req.user._id }
+        req.body.isAdmin = (req.user?.isAdmin) ? req.body.isAdmin : false
+
+        const data = await User.updateOne(filters, req.body, { runValidators: true })
+
         res.status(202).send({
-                error: false,
-                data,
-                newdata: await User.findOne({_id:req.params.id})  
-        })   
-        
+            error: false,
+            data,
+            new: await User.findOne(filters)
+        })
     },
 
     delete: async (req, res) => {
@@ -106,12 +122,14 @@ module.exports = {
             #swagger.tags = ["Users"]
             #swagger.summary = "Delete User"
         */
-        const data=await User.deleteOne({_id:req.params.id})
+
+        const filters = (req.user?.isAdmin) ? { _id: req.params.id } : { _id: req.user._id }
+
+        const data = await User.deleteOne(filters)
 
         res.status(data.deletedCount ? 204 : 404).send({
-                error: false,
-                data,                  
-        })   
-    
+            error: !data.deletedCount,
+            data
+        })
     },
 }

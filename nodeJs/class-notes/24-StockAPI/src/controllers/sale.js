@@ -2,11 +2,10 @@
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
-"use strict"
+// Sale Controller:
 
-const Sale = require('../models/sale')
 const Product = require('../models/product')
-
+const Sale = require('../models/sale')
 
 module.exports = {
 
@@ -15,26 +14,23 @@ module.exports = {
             #swagger.tags = ["Sales"]
             #swagger.summary = "List Sales"
             #swagger.description = `
-                You can send query with endpoint for search[], sort[], page and limit.
+                You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint.
                 <ul> Examples:
+                    <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>
                     <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
-                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
-                    <li>URL/?<b>page=2&limit=1</b></li>
+                    <li>URL/?<b>sort[field1]=asc&sort[field2]=desc</b></li>
+                    <li>URL/?<b>limit=10&page=1</b></li>
                 </ul>
             `
         */
-        const data=await res.getModelList(Sale)
-        // res.status(200).send({
-        //     error: false,
-        //     details:await res.getModelListDetails(Sale),
-        //     data  
-        // })
-        
-        //FOR REACT ? 
-        res.status(200).send({          
-            data  
+
+        const data = await res.getModelList(Sale, {}, ['brandId', 'productId'])
+
+        res.status(200).send({
+            error: false,
+            details: await res.getModelListDetails(Sale),
+            data
         })
-       
     },
 
     create: async (req, res) => {
@@ -44,33 +40,39 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: { $ref: '#/definitions/Sale' }
+                schema: {
+                    "brandId": "65343222b67e9681f937f107",
+                    "productId": "65343222b67e9681f937f422",
+                    "quantity": 1,
+                    "price": 9.99
+                }
             }
         */
-        
-        const curentProduct=await Product.findOne({ _id:req.body.product_id })
-        
-        if(curentProduct.quantity >= req.body.quantity){
-            
-            // crate sale process
-            const data=await Sale.create(req.body)
 
-            const updateProduct=await Product.updateOne({_id:data.product_id}, { $inc : { quantity:-data.quantity } })  
+        // Auto add userId to req.body:
+        req.body.userId = req.user?._id
 
-        }else{
+        // get product info:
+        const currentProduct = await Product.findOne({ _id: req.body.productId })
 
-            res.errorStatusCode=422
-            throw new Error('not enogh stock')
-        }  
-    
-            
-        const data=await Sale.create(req.body)
-        
-        res.status(201).send({
+        if (currentProduct.quantity >= req.body.quantity) { // Check Limit
+
+            // Create:
+            const data = await Sale.create(req.body)
+
+            // set product-quantity when Sale process:
+            const updateProduct = await Product.updateOne({ _id: data.productId }, { $inc: { quantity: -data.quantity } })
+
+            res.status(201).send({
                 error: false,
-                data  
-        })           
+                data,
+            })
 
+        } else {
+
+            res.errorStatusCode = 422
+            throw new Error('There is not enough product-quantity for this sale.', { cause: { currentProduct } })
+        }
     },
 
     read: async (req, res) => {
@@ -78,12 +80,14 @@ module.exports = {
             #swagger.tags = ["Sales"]
             #swagger.summary = "Get Single Sale"
         */
-        const data=await Sale.findOne({_id:req.params.id})
+
+        // Read:
+        const data = await Sale.findOne({ _id: req.params.id }).populate(['brandId', 'productId'])
+
         res.status(200).send({
             error: false,
-            data  
-        })      
-        
+            data
+        })
     },
 
     update: async (req, res) => {
@@ -93,59 +97,61 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: { $ref: '#/definitions/Sale' }
+                schema: {
+                    "brandId": "65343222b67e9681f937f107",
+                    "productId": "65343222b67e9681f937f422",
+                    "quantity": 1,
+                    "price": 9.99
+                }
             }
         */
-       if(req.body?.quantity){
 
-            // first get curentSale
-            const curentSale=await Sale.findOne({_id:req.params.id })
+        if (req.body?.quantity) {
+            // get current product-quantity from the Sale:
+            const currentSale = await Sale.findOne({ _id: req.params.id })
+            // different:
+            const quantity = req.body.quantity - currentSale.quantity
+            // console.log(quantity)
+            // set product-quantity when Sale process:
+            const updateProduct = await Product.updateOne({ _id: currentSale.productId, quantity: { $gte: quantity } }, { $inc: { quantity: -quantity } })
+            // console.log(updateProduct)
             
-            // calculate diference
-            const difquantity=req.body.quantity - curentSale.quantity   
+            // if product-quantity limit not enough:
+            if (updateProduct.modifiedCount == 0) { // Check Limit
+                res.errorStatusCode = 422
+                throw new Error('There is not enough product-quantity for this sale.')
+            }
+        }
 
-            // update product's cuantity
-            const updateProduct=await Product.updateOne(
-                {_id:curentSale.product_id, quantity:{$gte : difquantity } }, 
-                 { $inc : { quantity: difquantity } })
-            
-                if(updateProduct.modifiedCount==0) {              
+        // Update:
+        const data = await Sale.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
 
-                    res.errorStatusCode=422
-                    throw new Error('not enogh stock')
-                }  
-
-            const data=await Sale.updateOne({_id:req.params.id},req.body,{ runValidators:true})
-            res.status(202).send({
-                error: false,
-                data,
-                newdata: await Sale.findOne({_id:req.params.id})  
-        }) 
-       }              
+        res.status(202).send({
+            error: false,
+            data,
+            new: await Sale.findOne({ _id: req.params.id })
+        })
     },
+
     delete: async (req, res) => {
         /*
             #swagger.tags = ["Sales"]
             #swagger.summary = "Delete Sale"
         */
 
-        // first get curentSale
-        const curentSale=await Sale.findOne({_id:req.params.id }) 
-        
-        // delete curentSale        
-        const data=await Sale.deleteOne({_id:req.params.id})
+        // get current product-quantity from the Sale:
+        const currentSale = await Sale.findOne({ _id: req.params.id })
+        // console.log(currentSale)
 
-        // update product's cuantity
-        const updateProduct=await Product.updateOne({_id:curentSale.product_id}, 
-            { $inc : { quantity:+curentSale.quantity } })  
+        // Delete:
+        const data = await Sale.deleteOne({ _id: req.params.id })
 
-    
+        // set product-quantity when Sale process:
+        const updateProduct = await Product.updateOne({ _id: currentSale.productId }, { $inc: { quantity: +currentSale.quantity } })
 
-        
         res.status(data.deletedCount ? 204 : 404).send({
-                error: false,
-                data,                  
-        })   
-    
+            error: !data.deletedCount,
+            data
+        })
     },
 }

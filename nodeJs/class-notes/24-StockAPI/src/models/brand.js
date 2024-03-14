@@ -5,7 +5,8 @@
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- *
 {
-    "name": "Brand 1"
+    "name": "Brand 1",
+    "image": "http://imageURL"
 }
 /* ------------------------------------------------------- */
 // Brand Model:
@@ -21,8 +22,11 @@ const BrandSchema = new mongoose.Schema({
 
     image: { // URL
         type: String,
-        trim: true
+        trim: true,
+        default: ''
     }
 
 }, { collection: 'brands', timestamps: true })
+
+/* ------------------------------------------------------- */
 module.exports = mongoose.model('Brand', BrandSchema)

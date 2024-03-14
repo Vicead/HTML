@@ -5,8 +5,8 @@
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- *
 {
-    "brand_id": "65343222b67e9681f937f123",
-    "product_id": "65343222b67e9681f937f422",
+    "brandId": "65343222b67e9681f937f123",
+    "productId": "65343222b67e9681f937f422",
     "quantity": 1000,
     "price": 20
 }
@@ -15,19 +15,19 @@ const { mongoose } = require('../configs/dbConnection')
 
 const SaleSchema = new mongoose.Schema({
 
-    user_id: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
 
-    brand_id: {
+    brandId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
         required: true
     },
 
-    product_id: {
+    productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
         required: true
@@ -43,13 +43,14 @@ const SaleSchema = new mongoose.Schema({
         default: 0
     },
 
-    price_total: {
+    amount: {
         type: Number,
-        default: function(){ return this.quantity  * this.price }, // create
-        transform: function(){ return this.quantity  * this.price }, // update
-        set: function(){ return this.quantity  * this.price } // kullanıcı total gönderirse bile kendi hesaplasın
-        
+        default: function () { return this.price * this.quantity }, // for CREATE
+        transform: function () { return this.price * this.quantity }, // for UPDATE
+        // set: function () { return this.price * this.quantity } // for sendingData
     }
 
 }, { collection: 'sales', timestamps: true })
+
+/* ------------------------------------------------------- */
 module.exports = mongoose.model('Sale', SaleSchema)

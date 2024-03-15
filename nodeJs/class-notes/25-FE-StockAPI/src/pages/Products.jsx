@@ -15,7 +15,7 @@ const initialState = {
 };
 
 const Products = () => {
-  const { getStockData,getProCatBrand } = useStockCall();
+  const { getStockData, getProCatBrand } = useStockCall();
   const { products } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -31,7 +31,7 @@ const Products = () => {
     // getStockData("categori");
     // getStockData("brands");
 
-    getProCatBrand()
+    getProCatBrand();
   }, []);
 
   return (
@@ -46,7 +46,7 @@ const Products = () => {
         info={info}
         setInfo={setInfo}
       />
-      <ProductTable/>
+      <ProductTable />
     </Container>
   );
 };

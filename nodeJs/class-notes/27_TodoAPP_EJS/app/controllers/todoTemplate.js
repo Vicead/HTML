@@ -31,19 +31,26 @@ module.exports = {
     // CRUD METHODS:
 
     create: async (req, res) => {
+        
 
-        // const data = await Todo.create({
-        //     title: 'Test Title',
-        //     description: 'Test Description',
-        // })
-        // console.log( typeof req.body, req.body )
-        const data = await Todo.create(req.body)
-        res.status(201).send({
-            error: false,
-            body: req.body, // Send Data
-            message: 'Created',
-            result: data // Receive Data
-        })
+     //! form daki input name ler model deki ile aynı olmalı
+        if(req.method=='GET'){
+
+            res.render('todoCreate')
+
+        }else { // post
+
+            // app.use(express.urlencoded({extended:true} ))
+
+            console.log( " ********** ")
+            console.log( req.body)
+            const data = await Todo.create(req.body)
+            // res.redirect('/view')
+
+        }
+        
+
+
     },
 
     read: async (req, res) => {
@@ -64,16 +71,33 @@ module.exports = {
 
     update: async (req, res) => {
 
-        // Model.update({ newData }, { filter })
-        const isUpdated = await Todo.update(req.body, { where: { id: req.params.id } })
-        // isUpdated return: [ 1 ] or [ 0 ]
-        res.status(202).send({
-            error: false,
-            body: req.body, // Send Data
-            message: 'Updated',
-            isUpdated: Boolean(isUpdated[0]),
-            result: await Todo.findByPk(req.params.id)
-        })
+        // // Model.update({ newData }, { filter })
+        // const isUpdated = await Todo.update(req.body, { where: { id: req.params.id } })
+        // // isUpdated return: [ 1 ] or [ 0 ]
+        // res.status(202).send({
+        //     error: false,
+        //     body: req.body, // Send Data
+        //     message: 'Updated',
+        //     isUpdated: Boolean(isUpdated[0]),
+        //     result: await Todo.findByPk(req.params.id)
+        // })
+
+        if(req.method=='GET'){
+            const data = await Todo.findByPk(req.params.id)
+
+            res.render('todoUpdate',{data:data.dataValues})
+
+        }else { // post
+
+            // app.use(express.urlencoded({extended:true} ))
+
+            console.log( " ********** ")
+            console.log( req.body)
+            const data = await Todo.create(req.body)
+            // res.redirect('/view')
+
+        }
+        
     },
 
     delete: async (req, res) => {
@@ -91,7 +115,10 @@ module.exports = {
         // //     message: 'Deleted',
         // //     isDeleted: Boolean(isDeleted)
         // // })
-        res.redirect('todoList')
+
+        //redirect yaparken path belirtilir 
+        // delete den sonra hangi path e yönlencek ise 
+        res.redirect('/view')
     }
 
 }

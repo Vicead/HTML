@@ -20,8 +20,19 @@ const todoTemplate = require('../controllers/todoTemplate')
     
 
 router.get('/',todoTemplate.list) // LIST
+router.get('/create',todoTemplate.create) // CREATE
+router.post('/create',todoTemplate.create) // CREATE
+
+// router.all('/create',todoTemplate.create) // CREATE
+
 router.get('/:id', todoTemplate.read) // READ
-router.get('/:id/delete', todoTemplate.delete) // READ
+router.get('/:id/delete', todoTemplate.delete) // DELETE
+
+router.get('/:id/update', todoTemplate.update) // update
+router.post('/:id/update', todoTemplate.update) // update
+
+
+
 
 
 // router.post(todoTemplate.create) // CREATE

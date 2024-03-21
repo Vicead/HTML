@@ -10,13 +10,13 @@ https://github.com/mde/ejs/wiki/Using-EJS-with-Express
 '<%_' ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
 '<%=' Outputs the value into the template (HTML escaped)
 '<%-' Outputs the unescaped value into the template
-'<%#'  Comment tag, no execution, no output
+'<%#' Comment tag, no execution, no output
 '<%%' Outputs a literal '<%'
 '%>' Plain ending tag
 '-%>' Trim-mode ('newline slurp') tag, trims following newline
 '_%>' ‘Whitespace Slurping’ ending tag, removes all whitespace after it
-```
 
+```
 
 ## VsCode Extensions
 
@@ -39,6 +39,7 @@ app.set('view engine', 'ejs');
 ```
 
 - Template de HTML Form aracılığıyla veri taşınır. Bu gelen verilerin anlaşılır olması adına da bir ara katman gerekir. Önceki sürümlerde bu işlemi yine express developerlarının geliştirdiği body-parser paketi aracılığyla yapılıyordu ama artık dogrudan yine body-parser uzantısı olan urlencoded aracılığıyla yapılıyor.
+
 ```js
 // express.urlencoded() is a body parser for html post form.
 // Gelen verilerin sadece string olarak ele alnıması istenirse, extended: false özelliği kullanılır, fakat eğer bir JSON nesnesi olarak ele alınması istenirse, extended: true parametresi ile kullanmak gerekir. API hizmeti de sunduğumuz için bizim için uygun olan seçenek {extended: true} olacaktır.

@@ -12,10 +12,10 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
-  //   const { currentUser, logOut } = useAuthContext();
   const [showBackground, setShowBackground] = useState(false);
-  const {currentUser} = useSelector(state => state.auth)
-  const { logOut } = useAuthCalls()
+  const { currentUser } = useSelector((state) => state.auth);
+  const { logOut } = useAuthCalls();
+
   useEffect(() => {
     const handleScroll = () => {
       // console.log(window.scrollY);
@@ -34,9 +34,7 @@ const Navbar = () => {
     };
   }, []);
 
-  //* with custom hook
-  // const { currentUser } = useAuthContext();
-  // const currentUser = { displayName: "felix franko" };
+  //   const currentUser = { displayName: "felix franko" };
 
   return (
     <>
@@ -126,7 +124,7 @@ const Navbar = () => {
                             "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                           )}
                           role="button"
-                          onClick={ logOut }
+                          onClick={logOut}
                         >
                           Log out
                         </span>

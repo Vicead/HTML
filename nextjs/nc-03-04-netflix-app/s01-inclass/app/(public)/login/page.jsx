@@ -10,7 +10,7 @@ const Login = () => {
     password: "",
   });
 
-  const { signIn } = useAuthCalls();
+  const { signIn, signUpProvider } = useAuthCalls();
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <div className="relative h-screen w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover ">
-      <div className="bg-black w-full h-full bg-opacity-50">
+      <div className="bg-black w-full h-full lg:bg-opacity-50">
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center relative top-28  w-full lg:w-2/5 lg:max-w-md rounded-md">
             <form onSubmit={handleSubmit}>
@@ -66,7 +66,11 @@ const Login = () => {
                 </Link>
               </div>
               <button className="btn-danger">Login</button>
-              <button className="btn-danger flex justify-between items-center">
+              <button
+                onClick={() => signUpProvider()}
+                className="btn-danger flex justify-between items-center"
+                type="button"
+              >
                 Continue with Google
                 <GoogleIcon />
               </button>
